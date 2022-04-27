@@ -1,6 +1,4 @@
-package de.nicoismaili.qontract.data;
-
-import android.location.Address;
+package de.nicoismaili.qontract.data.models;
 
 import java.io.Serializable;
 
@@ -14,12 +12,12 @@ public class Settings implements Serializable {
     private final long id;
     private String firstname;
     private String lastname;
-    private Address address;
+    private String address;
     private String email;
     private String phoneNumber;
     private boolean isModelMode;
 
-    public Settings(long id, String firstname, String lastname, Address address, String email, String phoneNumber) {
+    public Settings(long id, String firstname, String lastname, String address, String email, String phoneNumber) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -44,11 +42,11 @@ public class Settings implements Serializable {
         this.lastname = lastname;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

@@ -27,7 +27,7 @@ public class ContractsRepository extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "qontract.db";
 
-    private SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     public ContractsRepository(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,6 +49,11 @@ public class ContractsRepository extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    /**
+     * Provide a string with SQLite commands to create all necessary tables.
+     *
+     * @return string containing SQLite command(s)
+     */
     private String createTables() {
         // Create contracts table
         String createContractsTable = "CREATE TABLE " +
@@ -292,16 +297,80 @@ public class ContractsRepository extends SQLiteOpenHelper {
         ) == 1;
     }
 
-
+    /**
+     * Save provided settings to database
+     *
+     * @param settings the settings to be saved
+     * @return the id of the saved settings
+     */
     public long insertSettings(Settings settings) {
-        return 0;
+        ContentValues settingsValues = new ContentValues();
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_FIRSTNAME, settings.getFirstname());
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_LASTNAME, settings.getLastname());
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_ADDRESS, settings.getAddress());
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_PHONE, settings.getPhoneNumber());
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_EMAIL, settings.getEmail());
+        settingsValues.put(SettingsContract.SettingsEntry.COLUMN_NAME_MODEL_MODE, settings.isModelMode());
+        return database.insert(SettingsContract.SettingsEntry.TABLE_NAME, null,
+                settingsValues);
     }
 
-    public long updateSettingsById(long id) {
-        return 0;
+    /**
+     * Update a settings entry in the database with a new one.
+     *
+     * @param id          the id of the to be updated row
+     * @param newSettings the settings object with which to update with
+     * @return id of the updated and saved settings entry
+     */
+    public long updateSettingsById(long id, Settings newSettings) {
+        boolean isDeleted = deleteSettingsById(id);
+        if (!isDeleted) {
+            throw new SQLiteException("Settings id does not exist on the database. Aborting deletion.");
+        }
+        return insertSettings(newSettings);
     }
 
-    public Contract getSettingsById(long id) {
-        return null;
+    /**
+     * Get a settings object by an Id.
+     *
+     * @param id id of the settings to get
+     * @return the gotten settings
+     */
+    public Settings getSettingsById(long id) {
+        String[] selectionArgs = {Long.toString(id)};
+        Cursor cursor = database.query(
+                SettingsContract.SettingsEntry.TABLE_NAME, // The table to query
+                null, // The array of columns to return (pass null to get all)
+                BaseColumns._ID + " = ?", // The columns for the WHERE clause
+                selectionArgs, // The values for the WHERE clause
+                null, // don't group the rows
+                null, // don't filter by row groups
+                null // The sort order
+        );
+        long settingsId =
+                cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID));
+        boolean isModelMode = cursor.getInt(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_MODEL_MODE)) == 1;
+        String firstname = cursor.getString(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_FIRSTNAME));
+        String lastname = cursor.getString(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_LASTNAME));
+        String address = cursor.getString(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_ADDRESS));
+        String email = cursor.getString(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_EMAIL));
+        String phone = cursor.getString(cursor.getColumnIndexOrThrow(SettingsContract.SettingsEntry.COLUMN_NAME_PHONE));
+        cursor.close();
+        return new Settings(settingsId, isModelMode, firstname, lastname, address, email, phone);
+    }
+
+    /**
+     * Delete a settings entry by its id.
+     *
+     * @param id id of the settings object in the database
+     * @return true if deletion was successful otherwise returns false
+     */
+    public boolean deleteSettingsById(long id) {
+        String[] selectionArgs = {Long.toString(id)};
+        return database.delete(
+                SettingsContract.SettingsEntry.TABLE_NAME, // The table to query
+                BaseColumns._ID + " = ?", // The columns for the WHERE clause
+                selectionArgs// The values for the WHERE clause
+        ) == 1;
     }
 }

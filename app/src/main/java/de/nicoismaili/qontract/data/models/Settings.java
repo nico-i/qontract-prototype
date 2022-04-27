@@ -17,8 +17,9 @@ public class Settings implements Serializable {
     private String phoneNumber;
     private boolean isModelMode;
 
-    public Settings(long id, String firstname, String lastname, String address, String email, String phoneNumber) {
+    public Settings(long id, boolean isModelMode, String firstname, String lastname, String address, String email, String phoneNumber) {
         this.id = id;
+        this.isModelMode = isModelMode;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;

@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import de.nicoismaili.qontract.R;
 
-class ContractViewHolder extends RecyclerView.ViewHolder {
+class ContractMinViewHolder extends RecyclerView.ViewHolder {
     private final TextView contractItemView;
 
-    private ContractViewHolder(View itemView) {
+    private ContractMinViewHolder(View itemView) {
         super(itemView);
         contractItemView = itemView.findViewById(R.id.textView);
     }
 
-    static ContractViewHolder create(ViewGroup parent) {
+    static ContractMinViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
-        return new ContractViewHolder(view);
+        return new ContractMinViewHolder(view);
     }
 
     public void bind(String text) {

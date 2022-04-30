@@ -6,35 +6,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import de.nicoismaili.qontract.data.contract.pojo.Contract;
+import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
-public class ContractListAdapter extends ListAdapter<Contract, ContractViewHolder> {
+public class ContractListAdapter extends ListAdapter<ContractMin, ContractMinViewHolder> {
 
-    public ContractListAdapter(@NonNull DiffUtil.ItemCallback<Contract> diffCallback) {
+    public ContractListAdapter(@NonNull DiffUtil.ItemCallback<ContractMin> diffCallback) {
         super(diffCallback);
     }
 
     @NonNull
     @Override
-    public ContractViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return ContractViewHolder.create(parent);
+    public ContractMinViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return ContractMinViewHolder.create(parent);
     }
 
     @Override
-    public void onBindViewHolder(ContractViewHolder holder, int position) {
-        Contract current = getItem(position);
+    public void onBindViewHolder(ContractMinViewHolder holder, int position) {
+        ContractMin current = getItem(position);
         holder.bind(current.getModelFirstname());
     }
 
-    public static class ContractDiff extends DiffUtil.ItemCallback<Contract> {
+    public static class ContractDiff extends DiffUtil.ItemCallback<ContractMin> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull Contract oldItem, @NonNull Contract newItem) {
+        public boolean areItemsTheSame(@NonNull ContractMin oldItem, @NonNull ContractMin newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Contract oldItem, @NonNull Contract newItem) {
+        public boolean areContentsTheSame(@NonNull ContractMin oldItem, @NonNull ContractMin newItem) {
             return oldItem.getModelLastname().equals(newItem.getModelLastname());
         }
     }

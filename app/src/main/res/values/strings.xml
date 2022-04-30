@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Qontract</string>
     <string name="add_contract">Add contract</string>
+    <string name="hint_first_name">Your first name…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Contract not saved because it is empty.</string>
+
 </resources>

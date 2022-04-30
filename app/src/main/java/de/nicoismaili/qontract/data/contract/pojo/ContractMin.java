@@ -10,13 +10,61 @@ import de.nicoismaili.qontract.data.contract.ContractConverters;
 @TypeConverters({ContractConverters.class})
 public class ContractMin {
     @ColumnInfo(name = "contract_id")
-    public int id;
+    private int id;
     @ColumnInfo(name = "signed")
-    public boolean isSigned;
-    public Date date;
-    public String location;
+    private boolean isSigned;
+    private Date date;
+    private String location;
     @ColumnInfo(name = "model_first_name")
-    public String modelFirstname;
+    private String modelFirstname;
     @ColumnInfo(name = "model_last_name")
-    public String modelLastname;
+    private String modelLastname;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isSigned() {
+        return isSigned;
+    }
+
+    public void setSigned(boolean signed) {
+        isSigned = signed;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getModelFirstname() {
+        return modelFirstname;
+    }
+
+    public void setModelFirstname(String modelFirstname) {
+        this.modelFirstname = modelFirstname;
+    }
+
+    public String getModelLastname() {
+        return modelLastname;
+    }
+
+    public void setModelLastname(String modelLastname) {
+        this.modelLastname = modelLastname;
+    }
 }

@@ -21,7 +21,7 @@ public class ContractViewModel extends AndroidViewModel {
         allContracts = repo.getAllContracts();
     }
 
-    LiveData<List<ContractMin>> getAllContracts() {
+    public LiveData<List<ContractMin>> getAllContracts() {
         return allContracts;
     }
 

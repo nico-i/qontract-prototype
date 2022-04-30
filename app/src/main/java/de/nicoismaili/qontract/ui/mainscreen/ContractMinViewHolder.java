@@ -8,13 +8,18 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import de.nicoismaili.qontract.R;
+import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
 class ContractMinViewHolder extends RecyclerView.ViewHolder {
-    private final TextView contractItemView;
+    private final TextView modelNameView;
+    private final TextView locationView;
+    private final TextView dateView;
 
     private ContractMinViewHolder(View itemView) {
         super(itemView);
-        contractItemView = itemView.findViewById(R.id.textView);
+        modelNameView = itemView.findViewById(R.id.model_name_view);
+        locationView = itemView.findViewById(R.id.location_view);
+        dateView = itemView.findViewById(R.id.date_view);
     }
 
     static ContractMinViewHolder create(ViewGroup parent) {
@@ -23,7 +28,9 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder {
         return new ContractMinViewHolder(view);
     }
 
-    public void bind(String text) {
-        contractItemView.setText(text);
+    public void bind(ContractMin contractMin) {
+        modelNameView.setText(String.format("%s %s", contractMin.getModelFirstname(), contractMin.getModelLastname()));
+        locationView.setText(contractMin.getLocation());
+        dateView.setText(contractMin.getDate().toString());
     }
 }

@@ -23,7 +23,7 @@ public class ContractListAdapter extends ListAdapter<ContractMin, ContractMinVie
     @Override
     public void onBindViewHolder(ContractMinViewHolder holder, int position) {
         ContractMin current = getItem(position);
-        holder.bind(current.getModelFirstname());
+        holder.bind(current);
     }
 
     public static class ContractDiff extends DiffUtil.ItemCallback<ContractMin> {
@@ -35,7 +35,7 @@ public class ContractListAdapter extends ListAdapter<ContractMin, ContractMinVie
 
         @Override
         public boolean areContentsTheSame(@NonNull ContractMin oldItem, @NonNull ContractMin newItem) {
-            return oldItem.getModelLastname().equals(newItem.getModelLastname());
+            return oldItem.getModelLastname().equals(newItem.getModelLastname()) && oldItem.getModelFirstname().equals(newItem.getModelFirstname()) && oldItem.getDate().equals(newItem.getDate());
         }
     }
 

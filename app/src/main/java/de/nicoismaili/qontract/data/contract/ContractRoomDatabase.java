@@ -21,7 +21,7 @@ public abstract class ContractRoomDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private static volatile ContractRoomDatabase INSTANCE;
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private final static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -34,9 +34,19 @@ public abstract class ContractRoomDatabase extends RoomDatabase {
                 ContractDAO dao = INSTANCE.contractDAO();
                 dao.deleteAll();
 
-                Contract contract = new Contract(-1, false, false, new Date(), "Valletta, Malta", "Josephine", "Paris", "", "", "", null, null, null);
+                Contract contract = new Contract();
+                contract.setModelFirstname("Nico");
+                contract.setModelLastname("Ismaili");
+                contract.setSigned(false);
+                contract.setDate(new Date());
+                contract.setLocation("Location2");
                 dao.insertContract(contract);
-                contract = new Contract(-2, false, false, new Date(), "Wiesbaden, Germany", "Nico", "Ismaili", "", "", "", null, null, null);
+                contract = new Contract();
+                contract.setModelFirstname("Josi");
+                contract.setModelLastname("Paris");
+                contract.setDate(new Date());
+                contract.setLocation("Location1");
+                contract.setSigned(true);
                 dao.insertContract(contract);
             });
         }

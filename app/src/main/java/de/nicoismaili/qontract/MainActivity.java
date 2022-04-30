@@ -22,12 +22,20 @@ import de.nicoismaili.qontract.ui.mainscreen.ContractViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private ContractViewModel contractViewModel;
-    private ActivityResultLauncher<Intent> editContractActivityResultLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> editContractActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
-                    Contract contract = new Contract(-3, false, false, new Date(), "Test, Testania", "Testname", "Testlastname", "", "", "", null, null, null);
+                    assert data != null;
+                    String firstname = data.getStringExtra(EditContractActivity.FIRSTNAME);
+                    String lastname = data.getStringExtra(EditContractActivity.LASTNAME);
+                    Contract contract = new Contract();
+                    contract.setSigned(false);
+                    contract.setModelFirstname(firstname);
+                    contract.setModelLastname(lastname);
+                    contract.setLocation("Blub");
+                    contract.setDate(new Date());
                     contractViewModel.insert(contract);
                 }
             });
@@ -41,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contractViewModel = new ViewModelProvider(this).get(ContractViewModel.class);
-        // Update the cached copy of the words in the adapter.
         contractViewModel.getAllContracts().observe(this, adapter::submitList);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {

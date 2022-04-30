@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qontract">
         <activity
-            android:name=".EditContractActivity"
+            android:name="de.nicoismaili.qontract.EditContractActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="de.nicoismaili.qontract.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

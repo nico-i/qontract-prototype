@@ -25,6 +25,7 @@ public class Contract implements Serializable {
     @ColumnInfo(name = "contract_id")
     private int id;
     @ColumnInfo(name = "signed")
+    @NonNull
     private boolean isSigned;
     @ColumnInfo(name = "read")
     private boolean isRead;
@@ -32,17 +33,14 @@ public class Contract implements Serializable {
     private Date date;
     @NonNull
     private String location;
-    @NonNull
     @ColumnInfo(name = "model_first_name")
+    @NonNull
     private String modelFirstname;
-    @NonNull
     @ColumnInfo(name = "model_last_name")
+    @NonNull
     private String modelLastname;
-    @NonNull
     private String modelAddress;
-    @NonNull
     private String modelPhone;
-    @NonNull
     private String modelEmail;
     @ColumnInfo(name = "images_json")
     // Contains paths to the images belonging to a contract
@@ -51,22 +49,6 @@ public class Contract implements Serializable {
     private String contractHTML;
     // Contains the signature of the model as an SVG
     private String modelSignatureSVG;
-
-    public Contract(int id, boolean isSigned, boolean isRead, @NonNull Date date, @NonNull String location, @NonNull String modelFirstname, @NonNull String modelLastname, @NonNull String modelAddress, @NonNull String modelPhone, @NonNull String modelEmail, List<String> images, String contractHTML, String modelSignatureSVG) {
-        this.id = id;
-        this.isSigned = isSigned;
-        this.isRead = isRead;
-        this.date = date;
-        this.location = location;
-        this.modelFirstname = modelFirstname;
-        this.modelLastname = modelLastname;
-        this.modelAddress = modelAddress;
-        this.modelPhone = modelPhone;
-        this.modelEmail = modelEmail;
-        this.images = images;
-        this.contractHTML = contractHTML;
-        this.modelSignatureSVG = modelSignatureSVG;
-    }
 
     public int getId() {
         return id;

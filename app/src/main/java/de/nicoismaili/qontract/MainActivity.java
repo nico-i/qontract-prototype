@@ -3,17 +3,20 @@ package de.nicoismaili.qontract;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import de.nicoismaili.qontract.data.ContractsRepository;
+import de.nicoismaili.qontract.ui.mainscreen.ContractListAdapter;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ContractsRepository contractsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.contractsRepository = new ContractsRepository(this);
         setContentView(R.layout.activity_main);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final ContractListAdapter adapter = new ContractListAdapter(new ContractListAdapter.ContractDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Qontract</string>
+    <string name="add_contract">Add contract</string>
 </resources>

@@ -3,6 +3,7 @@ package de.nicoismaili.qontract.ui.mainscreen;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,12 +20,14 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder {
     private final TextView modelNameView;
     private final TextView locationView;
     private final TextView dateView;
+    private final ImageView signedView;
 
     private ContractMinViewHolder(View itemView) {
         super(itemView);
         modelNameView = itemView.findViewById(R.id.model_name_view);
         locationView = itemView.findViewById(R.id.location_view);
         dateView = itemView.findViewById(R.id.date_view);
+        signedView = itemView.findViewById(R.id.signed_icon);
     }
 
     static ContractMinViewHolder create(ViewGroup parent) {
@@ -39,5 +42,6 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder {
         Date date = contractMin.getDate();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         dateView.setText(dateFormat.format(date));
+        signedView.setBackgroundResource(contractMin.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
     }
 }

@@ -4,5 +4,8 @@
     <string name="hint_first_name">Your first name…</string>
     <string name="button_submit">Submit</string>
     <string name="empty_not_saved">Contract not saved because it is empty.</string>
+    <string name="calendar_icon_alt">Calendar icon</string>
+    <string name="location_pin_icon_alt">Location pin icon</string>
+    <string name="signed_icon_alt">Signed icon</string>
 
 </resources>

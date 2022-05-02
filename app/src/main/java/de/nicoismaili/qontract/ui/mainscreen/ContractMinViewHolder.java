@@ -7,6 +7,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import de.nicoismaili.qontract.R;
 import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
@@ -31,6 +36,8 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder {
     public void bind(ContractMin contractMin) {
         modelNameView.setText(String.format("%s %s", contractMin.getModelFirstname(), contractMin.getModelLastname()));
         locationView.setText(contractMin.getLocation());
-        dateView.setText(contractMin.getDate().toString());
+        Date date = contractMin.getDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        dateView.setText(dateFormat.format(date));
     }
 }

@@ -5,5 +5,9 @@
     <dimen name="m_padding">16dp</dimen>
     <dimen name="l_padding">24dp</dimen>
     <dimen name="xl_padding">32dp</dimen>
-    <dimen name="min_height">30dp</dimen>
+    <dimen name="s_text">8sp</dimen>
+    <dimen name="m_text">12sp</dimen>
+    <dimen name="l_text">18sp</dimen>
+    <dimen name="xl_text">24sp</dimen>
+    <dimen name="min_height">30sp</dimen>
 </resources>

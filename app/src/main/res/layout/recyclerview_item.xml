@@ -1,42 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="25dp"
+    android:layout_marginTop="25dp"
+    android:background="@drawable/rounded_white_padded"
+    android:elevation="10dp"
     android:orientation="vertical">
-    <!-- A CardView that contains a TextView -->
-    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftGuide"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/s_padding"
-        card_view:cardCornerRadius="10dp">
+        android:orientation="vertical"
+        card_view:layout_constraintGuide_begin="0dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightGuid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        card_view:layout_constraintGuide_end="0dp" />
 
-            <TextView
-                android:id="@+id/model_name_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:padding="@dimen/l_padding" />
+    <TextView
+        android:id="@+id/model_name_view"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="@dimen/xl_text"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintStart_toStartOf="@+id/leftGuide"
+        card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/location_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:padding="@dimen/l_padding" />
+    <TextView
+        android:id="@+id/location_view"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toEndOf="@+id/imageView2"
+        card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
+        card_view:layout_constraintVertical_bias="0.3" />
 
-            <TextView
-                android:id="@+id/date_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:padding="@dimen/l_padding" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+    <TextView
+        android:id="@+id/date_view"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toEndOf="@+id/imageView"
+        card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
+        card_view:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/calendar_icon_alt"
+        card_view:layout_constraintStart_toEndOf="@+id/location_view"
+        card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
+        card_view:srcCompat="@drawable/ic_calendar" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/location_pin_icon_alt"
+        card_view:layout_constraintStart_toStartOf="@+id/leftGuide"
+        card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
+        card_view:srcCompat="@drawable/ic_pin" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/signed_icon_alt"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toStartOf="@+id/rightGuid"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:srcCompat="@drawable/ic_signed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package de.nicoismaili.qontract;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -10,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Date;
 
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contractViewModel = new ViewModelProvider(this).get(ContractViewModel.class);
         contractViewModel.getAllContracts().observe(this, adapter::submitList);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        ImageView fab = findViewById(R.id.addContractIcon);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, EditContractActivity.class);
             editContractActivityResultLauncher.launch(intent);

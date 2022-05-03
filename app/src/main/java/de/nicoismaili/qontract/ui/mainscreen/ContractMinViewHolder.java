@@ -37,10 +37,21 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(ContractMin contractMin) {
-        modelNameView.setText(String.format("%s %s", contractMin.getModelFirstname(), contractMin.getModelLastname()));
+        String firstName = contractMin.getModelFirstname().substring(0, 1).toUpperCase() + contractMin.getModelFirstname().substring(1);
+        String lastName = contractMin.getModelLastname().substring(0, 1).toUpperCase() + contractMin.getModelLastname().substring(1);
+        String fullName = String.format("%s %s", firstName, lastName);
+        String firstInitial = "";
+        if (fullName.length() > 17) {
+            firstInitial = firstName.charAt(0) + ". ";
+            fullName = firstInitial + contractMin.getModelLastname();
+        }
+        if (fullName.length() > 17) {
+            fullName = firstInitial + lastName.substring(0, 14) + "…";
+        }
+        modelNameView.setText(fullName);
         locationView.setText(contractMin.getLocation());
         Date date = contractMin.getDate();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
         dateView.setText(dateFormat.format(date));
         signedView.setBackgroundResource(contractMin.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
     }

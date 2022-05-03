@@ -7,5 +7,8 @@
     <string name="calendar_icon_alt">Calendar icon</string>
     <string name="location_pin_icon_alt">Location pin icon</string>
     <string name="signed_icon_alt">Signed icon</string>
+    <string name="add_new_contract_hint">Add new contract</string>
+    <string name="go_to_settings_hint">Go to settings view</string>
+    <string name="contracts">Contracts</string>
 
 </resources>

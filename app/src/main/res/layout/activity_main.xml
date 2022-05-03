@@ -31,7 +31,6 @@
         android:elevation="5dp"
         android:iconifiedByDefault="false"
         android:paddingStart="-5dp"
-        android:paddingEnd="25dp"
         android:queryBackground="@android:color/transparent"
         android:queryHint="Search"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview"

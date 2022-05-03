@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Blues -->
+    <color name="blue_50">#FFF2F9FF</color>
     <color name="blue_200">#FF3388FF</color>
     <color name="blue_500">#FF006AFF</color>
     <color name="blue_700">#FF0055CC</color>
+    <!-- Reds -->
     <color name="red_500">#FFFF0000</color>
     <color name="red_700">#FFCD0000</color>
+    <!-- Grays -->
+    <color name="gray_50">#FFFAFAFA</color>
     <color name="gray_200">#FFC7C8C9</color>
-    <color name="gray_700">#FF212529</color>
+    <!-- Text colors -->
+    <color name="text">#FF212529</color>
+    <color name="hint_text">#FF767676</color>
+    <!-- Standard -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>

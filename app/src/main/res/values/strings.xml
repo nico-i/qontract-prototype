@@ -2,7 +2,7 @@
     <string name="app_name">Qontract</string>
     <string name="add_contract">Add contract</string>
     <string name="hint_first_name">Your first name…</string>
-    <string name="button_submit">Submit</string>
+    <string name="submit_btn">Submit</string>
     <string name="empty_not_saved">Contract not saved because it is empty.</string>
     <string name="calendar_icon_alt">Calendar icon</string>
     <string name="location_pin_icon_alt">Location pin icon</string>
@@ -10,5 +10,27 @@
     <string name="add_new_contract_hint">Add new contract</string>
     <string name="go_to_settings_hint">Go to settings view</string>
     <string name="contracts">Contracts</string>
-
+    <string name="first_name_input_label">First Name*</string>
+    <string name="model_release_form">Model Release Form</string>
+    <string name="contract_details">Contract details</string>
+    <string name="location_input_hint">City, Country</string>
+    <string name="location_input_label">Location*</string>
+    <string name="date_input_label">Date*</string>
+    <string name="date_input_hint">DD/MM/YYYY</string>
+    <string name="firstname_input_label">Firstname*</string>
+    <string name="firstname_input_hint">John</string>
+    <string name="lastname_input_label">Lastname*</string>
+    <string name="lastname_input_hint">Doe</string>
+    <string name="model_details_title">Model details</string>
+    <string name="address_input_label">Address*</string>
+    <string name="address_input_hint">Street 1, 12345 City, Country</string>
+    <string name="email_input_label">Email</string>
+    <string name="email_input_hint">example@mail.com</string>
+    <string name="phone_input_label">Phone</string>
+    <string name="phone_input_hint">+12 345 678 90</string>
+    <string name="read_contract_btn">Read Contract</string>
+    <string name="read_checkbox_label">I have read the contract and agree with the terms and conditions.</string>
+    <string name="model_signature_title">Model\'s signature*</string>
+    <string name="signature_input_hint">Double tap to clear signature.</string>
+    <string name="form_hint">*required</string>
 </resources>

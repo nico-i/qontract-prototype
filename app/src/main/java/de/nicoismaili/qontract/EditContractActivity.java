@@ -19,9 +19,9 @@ public class EditContractActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_contract);
-        EditFirstNameView = findViewById(R.id.edit_first_name);
-        EditLastNameView = findViewById(R.id.edit_last_name);
-        final Button button = findViewById(R.id.button_save);
+        EditFirstNameView = findViewById(R.id.first_name_input);
+        EditLastNameView = findViewById(R.id.lastname_input);
+        final Button button = findViewById(R.id.submit_btn);
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
             if (TextUtils.isEmpty(EditFirstNameView.getText())) {

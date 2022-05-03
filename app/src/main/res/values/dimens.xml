@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="xs_padding">4dp</dimen>
-    <dimen name="s_padding">8dp</dimen>
-    <dimen name="m_padding">16dp</dimen>
-    <dimen name="l_padding">24dp</dimen>
-    <dimen name="xl_padding">32dp</dimen>
-    <dimen name="s_text">8sp</dimen>
-    <dimen name="m_text">12sp</dimen>
-    <dimen name="l_text">18sp</dimen>
-    <dimen name="xl_text">24sp</dimen>
+    <!-- Padding dimensions -->
+    <dimen name="xs_dim">4dp</dimen>
+    <dimen name="neg_xs_dim">-4dp</dimen>
+    <dimen name="s_dim">8dp</dimen>
+    <dimen name="neg_s_dim">-8dp</dimen>
+    <dimen name="m_dim">16dp</dimen>
+    <dimen name="neg_m_dim">-16dp</dimen>
+    <dimen name="l_dim">24dp</dimen>
+    <dimen name="neg_l_dim">-24dp</dimen>
+    <dimen name="xl_dim">48dp</dimen>
+    <dimen name="neg_xl_dim">-48dp</dimen>
+    <!-- Text dimensions -->
+    <dimen name="small_text">12sp</dimen>
+    <dimen name="normal_text">18sp</dimen>
+    <dimen name="large_text">24sp</dimen>
     <dimen name="min_height">30sp</dimen>
+    <!-- Corner radius dimensions -->
+    <dimen name="corner_radius">15dp</dimen>
+    <dimen name="neg_corner_radius">-15dp</dimen>
 </resources>

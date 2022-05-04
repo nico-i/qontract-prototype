@@ -33,4 +33,5 @@
     <string name="model_signature_title">Model\'s signature*</string>
     <string name="signature_input_hint">Double tap to clear signature.</string>
     <string name="form_hint">*required</string>
+    <string name="search_hint">Search contracts</string>
 </resources>

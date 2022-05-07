@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,14 @@ public class EditContractActivity extends AppCompatActivity {
 
         final Button button = findViewById(R.id.submit_btn);
         button.setOnClickListener(this::submitNewContract);
+
+        ImageButton backButton = findViewById(R.id.back_btn);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EditContractActivity.this, MainActivity.class);
+            setResult(RESULT_CANCELED, intent);
+            EditContractActivity.this.startActivity(intent);
+            finish();
+        });
     }
 
     private void submitNewContract(View view) {

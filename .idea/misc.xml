@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_blue_rounded.xml" value="0.1" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_gray_gray_border_rounded_bottom.xml" value="0.1" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_white_border_gray_rounded.xml" value="0.1" />
+        <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_white_border_gray_rounded_bottom.xml" value="0.1" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_white_gray_border.xml" value="0.1" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_white_gray_border_rounded.xml" value="0.1" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/drawable/bg_white_gray_border_rounded_bottom.xml" value="0.1655" />
@@ -31,9 +32,11 @@
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/font/poppins_medium.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/font/poppins_semibold.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/font/poppins_thin.xml" value="0.28020833333333334" />
-        <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/layout/activity_edit_contract.xml" value="0.2578125" />
+        <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/layout/activity_edit_contract.xml" value="0.264" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/layout/activity_settings.xml" value="0.4" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/layout/recyclerview_item.xml" value="0.5545286506469501" />
+        <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/menu/select_contracts_menu.xml" value="0.25" />
         <entry key="..\:/Users/Nico Ismaili/Documents/Github/qontract/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.121" />
       </map>
     </option>

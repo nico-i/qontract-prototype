@@ -12,26 +12,14 @@
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-05-07T13:19:57.684544400Z" />
-    <multipleDevicesSelectedInDropDown value="true" />
-    <runningDeviceTargetsSelectedWithDialog>
-      <Target>
-        <type value="RUNNING_DEVICE_TARGET" />
-        <deviceKey>
-          <Key>
-            <type value="SERIAL_NUMBER" />
-            <value value="adb-be7b8c16-XfE5kc._adb-tls-connect._tcp" />
-          </Key>
-        </deviceKey>
-      </Target>
-    </runningDeviceTargetsSelectedWithDialog>
+    <timeTargetWasSelectedWithDropDown value="2022-05-07T19:05:15.057504200Z" />
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Nico Ismaili\.android\avd\Pixel_2_Minimum_API_21.avd" />
+            <value value="C:\Users\Nico Ismaili\.android\avd\Pixel_5_API_32.avd" />
           </Key>
         </deviceKey>
       </Target>
@@ -40,7 +28,7 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Nico Ismaili\.android\avd\Pixel_5_Newest_API.avd" />
+            <value value="C:\Users\Nico Ismaili\.android\avd\Pixel_5_API_21.avd" />
           </Key>
         </deviceKey>
       </Target>

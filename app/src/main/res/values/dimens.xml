@@ -12,7 +12,8 @@
     <dimen name="xl_dim">48dp</dimen>
     <dimen name="neg_xl_dim">-48dp</dimen>
     <!-- Text dimensions -->
-    <dimen name="small_text">12sp</dimen>
+    <dimen name="extra_small_text">12sp</dimen>
+    <dimen name="small_text">14sp</dimen>
     <dimen name="normal_text">18sp</dimen>
     <dimen name="large_text">24sp</dimen>
     <dimen name="min_height">30sp</dimen>

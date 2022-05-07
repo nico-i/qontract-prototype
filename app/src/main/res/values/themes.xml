@@ -3,10 +3,11 @@
     <style name="Theme.Qontract" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Brand colors -->
         <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorAccent">@color/black</item>
+        <item name="colorAccent">@color/blue_500</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Makes glow transparent when over scrolling -->
         <item name="android:colorEdgeEffect">@color/transparent</item>
+
     </style>
 </resources>

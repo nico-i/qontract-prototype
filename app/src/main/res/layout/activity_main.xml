@@ -1,91 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:paddingHorizontal="@dimen/m_dim"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/select_contracts_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:requiresFadingEdge="vertical"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        tools:listitem="@layout/recyclerview_item" />
-
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/s_dim"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="@dimen/xs_dim"
-        android:queryHint="@string/search_hint"
-        android:background="@drawable/bg_white_rounded"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         android:elevation="@dimen/xs_dim"
-        android:iconifiedByDefault="false"
-        android:paddingStart="@dimen/neg_xs_dim"
-        android:queryBackground="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryBackground="@android:color/transparent"
-        tools:ignore="RtlSymmetry"
-        tools:layout_editor_absoluteX="22dp" />
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <TextView
-        android:id="@+id/contractsTitle"
-        android:layout_marginTop="@dimen/m_dim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/contracts"
-        android:textSize="@dimen/normal_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/addContractIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/s_dim"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        android:contentDescription="@string/add_new_contract_hint"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_plus"
-        app:layout_constraintBottom_toTopOf="@+id/search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/contractsTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
+        android:paddingHorizontal="@dimen/m_dim"
+        tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/settingsIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/s_dim"
-        android:background="@color/white"
-        android:contentDescription="@string/go_to_settings_hint"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_settings"
-        app:layout_constraintBottom_toTopOf="@+id/search"
-        app:layout_constraintEnd_toStartOf="@+id/contractsTitle"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
+        <ImageButton
+            android:id="@+id/settingsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/s_dim"
+            android:background="@color/white"
+            android:contentDescription="@string/go_to_settings_hint"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toTopOf="@+id/search"
+            app:layout_constraintEnd_toStartOf="@+id/contractsTitle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/contractsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_dim"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/contracts"
+            android:textColor="@color/text"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/addContractIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/s_dim"
+            android:background="@color/white"
+            android:contentDescription="@string/add_new_contract_hint"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toTopOf="@+id/search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/contractsTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:requiresFadingEdge="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search"
+            tools:listitem="@layout/recyclerview_item" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/s_dim"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="@dimen/xs_dim"
+            android:background="@drawable/bg_white_rounded"
+            android:elevation="@dimen/xs_dim"
+            android:iconifiedByDefault="false"
+            android:paddingStart="@dimen/neg_xs_dim"
+            android:queryBackground="@android:color/transparent"
+            android:queryHint="@string/search_hint"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@android:color/transparent"
+            tools:ignore="RtlSymmetry"
+            tools:layout_editor_absoluteX="22dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+
+

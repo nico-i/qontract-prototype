@@ -9,7 +9,7 @@
     <color name="red_500">#FFFF0000</color>
     <color name="red_700">#FFCD0000</color>
     <!-- Grays -->
-    <color name="gray_50">#FFFAFAFA</color>
+    <color name="gray_50">#FFF2F2F2</color>
     <color name="gray_200">#FFC7C8C9</color>
     <!-- Text colors -->
     <color name="text">#FF212529</color>

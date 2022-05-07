@@ -1,4 +1,4 @@
-package de.nicoismaili.qontract.ui.mainscreen;
+package de.nicoismaili.qontract.ui.mainView;
 
 import static androidx.lifecycle.Transformations.switchMap;
 

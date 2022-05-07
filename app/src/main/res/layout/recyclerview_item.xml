@@ -12,6 +12,7 @@
     android:focusable="true"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/l_dim"
+    android:focusableInTouchMode="false"
     android:paddingVertical="@dimen/m_dim">
 
     <TextView

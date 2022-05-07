@@ -41,7 +41,7 @@ public class ContractViewModel extends AndroidViewModel {
     }
 
     public void setSearchQuery(String newQuery) {
-        this.searchQuery.setValue(newQuery);
+        this.searchQuery.setValue("%" + newQuery + "%");
     }
 
 

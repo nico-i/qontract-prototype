@@ -2,13 +2,17 @@ package de.nicoismaili.qontract;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 contractViewModel.setSearchQuery(newText);
-                System.out.println("tap");
                 return true;
             }
         });
@@ -72,7 +75,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, EditContractActivity.class);
             editContractActivityResultLauncher.launch(intent);
         });
-
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) searchView.findViewById(id);
+        Typeface tf = ResourcesCompat.getFont(this, R.font.poppins_medium);
+        textView.setGravity(Gravity.BOTTOM);
+        textView.setTypeface(tf);
     }
 
 }

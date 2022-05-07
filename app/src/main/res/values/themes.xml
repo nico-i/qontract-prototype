@@ -1,13 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Qontract" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
+    <style name="Theme.Qontract" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Brand colors -->
         <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryVariant">@color/blue_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorAccent">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-        <!-- Customize your theme here. -->
+        <!-- Makes glow transparent when over scrolling -->
         <item name="android:colorEdgeEffect">@color/transparent</item>
     </style>
 </resources>

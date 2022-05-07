@@ -20,7 +20,7 @@ public class ContractRepository {
     public ContractRepository(Application application) {
         ContractRoomDatabase db = ContractRoomDatabase.getDatabase(application);
         contractDAO = db.contractDAO();
-        allContracts = contractDAO.getAllContractMinSortedByDate();
+        allContracts = contractDAO.getAllContractsMinSortedByDate();
     }
 
     // Room executes all queries on a separate thread.
@@ -41,6 +41,10 @@ public class ContractRepository {
 
     public void update(Contract contract) {
         ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.updateContract(contract));
+    }
+
+    public LiveData<List<ContractMin>> getAllContractsByQuery(String query) {
+        return contractDAO.getAllContractsByQueryMinSortedByDate(query);
     }
 
 }

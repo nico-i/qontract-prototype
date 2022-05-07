@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.SearchView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -21,6 +22,7 @@ import de.nicoismaili.qontract.ui.mainscreen.ContractViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private ContractViewModel contractViewModel;
+
     private final ActivityResultLauncher<Intent> editContractActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -49,8 +51,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contractViewModel = new ViewModelProvider(this).get(ContractViewModel.class);
         contractViewModel.getAllContracts().observe(this, adapter::submitList);
-        ImageView fab = findViewById(R.id.addContractIcon);
-        fab.setOnClickListener(view -> {
+        SearchView searchView = findViewById(R.id.search);
+        contractViewModel.setSearchQuery("");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                contractViewModel.setSearchQuery(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                contractViewModel.setSearchQuery(newText);
+                System.out.println("tap");
+                return true;
+            }
+        });
+        ImageView addButton = findViewById(R.id.addContractIcon);
+        addButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, EditContractActivity.class);
             editContractActivityResultLauncher.launch(intent);
         });

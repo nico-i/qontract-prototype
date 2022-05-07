@@ -31,7 +31,10 @@ public interface ContractDAO {
     Contract getContractById(int id);
 
     @Query("SELECT contract_id, signed, date, location, model_first_name, model_last_name FROM contracts ORDER BY date DESC")
-    LiveData<List<ContractMin>> getAllContractMinSortedByDate();
+    LiveData<List<ContractMin>> getAllContractsMinSortedByDate();
+
+    @Query("SELECT contract_id, signed, date, location, model_first_name, model_last_name FROM contracts where model_first_name LIKE :query order by date DESC")
+    LiveData<List<ContractMin>> getAllContractsByQueryMinSortedByDate(String query);
 
     @Query("DELETE FROM contracts")
     void deleteAll();

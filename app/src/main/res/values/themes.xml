@@ -1,13 +1,23 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.Qontract" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Qontract" parent="Theme.Material3.Light.NoActionBar">
         <!-- Brand colors -->
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorAccent">@color/blue_500</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
         <!-- Makes glow transparent when over scrolling -->
         <item name="android:colorEdgeEffect">@color/transparent</item>
-
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Qontract.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Qontract.TitleMedium</item>
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.Qontract.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.Qontract.DisplayMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Qontract.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Qontract.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Qontract.BodySmall</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="actionModeStyle">@style/Base.Widget.AppCompat.ActionMode</item>
     </style>
 </resources>

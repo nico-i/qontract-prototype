@@ -1,4 +1,4 @@
-package de.nicoismaili.qontract.ui.mainView;
+package de.nicoismaili.qontract.ui.contractlist;
 
 import static androidx.lifecycle.Transformations.switchMap;
 
@@ -43,6 +43,4 @@ public class ContractViewModel extends AndroidViewModel {
     public void setSearchQuery(String newQuery) {
         this.searchQuery.setValue("%" + newQuery + "%");
     }
-
-
 }

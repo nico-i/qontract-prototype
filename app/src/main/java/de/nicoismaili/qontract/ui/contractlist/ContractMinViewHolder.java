@@ -1,4 +1,4 @@
-package de.nicoismaili.qontract.ui.mainView;
+package de.nicoismaili.qontract.ui.contractlist;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +36,7 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     static ContractMinViewHolder create(ViewGroup parent, ContractListAdapter.OnContractClickListener onContractClickListener) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.item_contract, parent, false);
         return new ContractMinViewHolder(view, onContractClickListener);
     }
 
@@ -57,6 +57,7 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         Date date = contractMin.getDate();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
         dateView.setText(dateFormat.format(date));
+        //itemView.setBackgroundColor(contractMin.isSelected() ? Color.GREEN : Color.WHITE);
         signedView.setBackgroundResource(contractMin.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
     }
 

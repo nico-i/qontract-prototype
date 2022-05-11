@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:backgroundTint="@color/white"
     android:overScrollMode="never"
-    tools:context=".EditContractActivity">
+    tools:context=".ui.fragments.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/edit_contract_activity"
@@ -15,33 +15,14 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/l_dim">
         <!-- Header start -->
-
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/neg_s_dim"
-            android:background="@color/white"
-            android:contentDescription="@string/go_to_settings_hint"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toTopOf="@+id/contract_details_title"
-            app:layout_constraintEnd_toStartOf="@+id/activity_1_title"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"
-            app:tint="@color/black"
-            tools:ignore="TouchTargetSizeCheck" />
-
+        <!-- Header start -->
         <TextView
-            android:id="@+id/activity_1_title"
+            android:id="@+id/setting_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/l_dim"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_release_form"
+            android:text="@string/settings_title"
             android:textColor="@color/text"
             android:textSize="@dimen/normal_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,137 +31,39 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/qr_button"
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/neg_s_dim"
+            android:layout_marginStart="-8dp"
             android:background="@color/white"
-            android:contentDescription="@string/add_new_contract_hint"
+            android:contentDescription="@string/go_to_settings_hint"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:src="@drawable/ic_qrcode"
-            app:layout_constraintBottom_toTopOf="@+id/contract_details_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/activity_1_title"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toTopOf="@+id/model_details_title"
+            app:layout_constraintEnd_toStartOf="@+id/setting_title"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40"
             app:tint="@color/black"
             tools:ignore="TouchTargetSizeCheck" />
-
         <!-- Header End -->
-        <!-- Contract details start -->
-        <TextView
-            android:id="@+id/contract_details_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/contract_details"
-            android:textColor="@color/text"
-            android:textSize="@dimen/normal_text"
-            app:layout_constraintBottom_toTopOf="@+id/location_group"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/location_group"
-            app:layout_constraintTop_toBottomOf="@+id/activity_1_title" />
+        <!-- Header End -->
 
-        <LinearLayout
-            android:id="@+id/location_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xs_dim"
-            android:background="@drawable/bg_white_border_gray_rounded_top"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contract_details_title">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/location_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/location_input_hint"
-                android:inputType="textPostalAddress"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/date_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray_rounded_bottom"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/date_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/date_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/date_input_hint"
-                android:inputType="date"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <!-- Contract details end -->
         <!-- Model details start -->
         <TextView
             android:id="@+id/model_details_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_details_title"
+            android:text="@string/personal_details_title"
             android:textColor="@color/text"
             android:textSize="@dimen/normal_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/location_group"
-            app:layout_constraintTop_toBottomOf="@+id/date_group" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setting_title" />
 
         <LinearLayout
             android:id="@+id/first_name_group"
@@ -388,112 +271,32 @@
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
         <!-- Model details end -->
-        <!-- Read contract start -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/read_contract_btn"
-            android:layout_width="match_parent"
+        <!-- App settings begin -->
+        <TextView
+            android:id="@+id/app_settings_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/l_dim"
-            android:background="@drawable/bg_black_rounded"
-            android:backgroundTint="@color/black"
-            android:buttonTint="@color/black"
             android:fontFamily="@font/poppins_semibold"
-            android:letterSpacing="0.0"
-            android:paddingTop="@dimen/m_dim"
-            android:paddingBottom="@dimen/s_dim"
-            android:text="@string/read_contract_btn"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone_group" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/s_dim"
-            android:backgroundTint="@color/blue_500"
-            android:buttonTint="@color/blue_500"
-            android:fontFamily="@font/poppins_semibold"
-            android:lines="2"
-            android:text="@string/read_checkbox_label"
-            android:textColor="@color/text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/read_contract_btn" />
-        <!-- Read contract end -->
-        <!-- Model signature start -->
-        <TextView
-            android:id="@+id/model_signature_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/s_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_signature_title"
+            android:text="@string/app_settings_title"
             android:textColor="@color/text"
             android:textSize="@dimen/normal_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/phone_group" />
 
-        <com.github.gcacace.signaturepad.views.SignaturePad
-            android:id="@+id/signature_pad"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/model_mode_switch"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="@dimen/s_dim"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xs_dim"
+            android:layout_weight="1"
             android:background="@drawable/bg_white_border_gray_rounded"
-            app:clearOnDoubleClick="true"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="@dimen/m_dim"
+            android:text="@string/model_mode_label"
+            android:textSize="@dimen/normal_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signature_input_hint"
-            app:penColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/signature_input_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/neg_xs_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/signature_input_hint"
-            android:textColor="@color/hint_text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_signature_title" />
-
-        <TextView
-            android:id="@+id/form_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/form_hint"
-            android:textColor="@color/text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
-        <!-- Model signature end -->
-        <!-- Submit button start -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/submit_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/m_dim"
-            android:layout_marginBottom="@dimen/l_dim"
-            android:background="@drawable/bg_blue_rounded"
-            android:fontFamily="@font/poppins_semibold"
-            android:letterSpacing="0.0"
-            android:paddingTop="@dimen/m_dim"
-            android:paddingBottom="@dimen/s_dim"
-            android:text="@string/submit_btn"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/form_hint" />
-        <!-- Submit button end -->
+            app:layout_constraintTop_toBottomOf="@+id/app_settings_title" />
+        <!-- App settings end-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

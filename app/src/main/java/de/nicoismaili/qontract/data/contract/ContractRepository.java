@@ -43,6 +43,10 @@ public class ContractRepository {
         ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.updateContract(contract));
     }
 
+    public Contract getContractById(int id) {
+        return contractDAO.getContractById(id);
+    }
+
     public LiveData<List<ContractMin>> getAllContractsByQuery(String query) {
         return contractDAO.getAllContractsByQueryMinSortedByDate(query);
     }

@@ -11,12 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Qontract">
         <activity
-            android:name="de.nicoismaili.qontract.SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name="de.nicoismaili.qontract.EditContractActivity"
-            android:exported="false" />
-        <activity
             android:name="de.nicoismaili.qontract.MainActivity"
             android:exported="true">
             <intent-filter>

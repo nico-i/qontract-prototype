@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:label="@string/contracts"
+    android:paddingHorizontal="@dimen/m_dim"
+    tools:context=".ui.fragments.ContractsFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="0dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/main_menu"
+        app:navigationIcon="@drawable/ic_settings"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@color/text">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/neg_s_dim"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="@string/contracts"
+            android:textSize="@dimen/large_text" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/s_dim"
+        android:layout_marginBottom="@dimen/xs_dim"
+        android:background="@drawable/bg_white_rounded"
+        android:elevation="@dimen/xs_dim"
+        android:iconifiedByDefault="false"
+        android:paddingStart="@dimen/neg_xs_dim"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="@string/search_hint"
+        app:defaultQueryHint="@string/search_hint"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+        app:layout_constraintTop_toBottomOf="@+id/main_app_bar"
+        app:queryBackground="@android:color/transparent"
+        tools:ignore="RtlSymmetry"
+        tools:layout_editor_absoluteX="22dp">
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="recyclerview" />
+    </androidx.appcompat.widget.SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:requiresFadingEdge="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        tools:listitem="@layout/item_contract" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

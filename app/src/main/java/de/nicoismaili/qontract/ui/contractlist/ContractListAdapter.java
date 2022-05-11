@@ -1,4 +1,4 @@
-package de.nicoismaili.qontract.ui.mainView;
+package de.nicoismaili.qontract.ui.contractlist;
 
 import android.view.ViewGroup;
 
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
 public class ContractListAdapter extends ListAdapter<ContractMin, ContractMinViewHolder> {
-    private ContractListAdapter.OnContractClickListener onContractClickListener;
+    private final ContractListAdapter.OnContractClickListener onContractClickListener;
 
     public ContractListAdapter(@NonNull DiffUtil.ItemCallback<ContractMin> diffCallback, OnContractClickListener onContractClickListener) {
         super(diffCallback);

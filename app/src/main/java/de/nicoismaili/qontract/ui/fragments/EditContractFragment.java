@@ -2,21 +2,23 @@ package de.nicoismaili.qontract.ui.fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
@@ -43,7 +45,7 @@ public class EditContractFragment extends Fragment {
     private EditText dateEditText;
     private SignaturePad signaturePad;
     private AppCompatButton readContractBtn;
-    private AppCompatButton submitBtn;
+    private NavController navController;
 
     public EditContractFragment() {
     }
@@ -77,13 +79,8 @@ public class EditContractFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        this.navController = Navigation.findNavController(view);
         super.onViewCreated(view, savedInstanceState);
-        viewModel.getCurrentContract().observe(getViewLifecycleOwner(), newContract -> {
-            if (newContract != null) {
-                Log.d("onViewCreated: ", newContract.toString());
-                this.binding.setContract(newContract);
-            }
-        });
         this.dateEditText = view.findViewById(R.id.date_input);
         Calendar calendar = Calendar.getInstance();
         dateEditText.setOnClickListener(v -> new DatePickerDialog(getContext(), (view1, year, month, dayOfMonth) -> {
@@ -91,28 +88,60 @@ public class EditContractFragment extends Fragment {
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             Date calendarDate = calendar.getTime();
-            contract.setDate(calendarDate.getTime());
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ROOT);
+            Contract boundContract = binding.getContract();
+            boundContract.setDate(calendarDate.getTime());
+            binding.setContract(boundContract);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
             dateEditText.setText(simpleDateFormat.format(calendarDate));
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
         this.signaturePad = view.findViewById(R.id.signature_pad);
         this.signaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
-                if (!contract.isSigned()) {
-                    Toast.makeText(getContext(), "Please read the contract before signing", Toast.LENGTH_LONG).show();
+                if (!binding.getContract().isRead()) {
+                    signaturePad.clear();
+                    signaturePad.setEnabled(false);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                    builder.setMessage("Please read the contract before signing!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", (dialog, id) -> {
+                                signaturePad.clear();
+                                signaturePad.setEnabled(true);
+                                signaturePad.clearFocus();
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
             }
 
             @Override
             public void onSigned() {
-                contract.setSigned(true);
-                contract.setModelSignatureSVG(signaturePad.getSignatureSvg());
+                Contract boundContract = binding.getContract();
+                boundContract.setSigned(true);
+                boundContract.setModelSignature(signaturePad.getTransparentSignatureBitmap());
+                binding.setContract(boundContract);
             }
 
             @Override
             public void onClear() {
-
+                Contract boundContract = binding.getContract();
+                boundContract.setSigned(false);
+                boundContract.setModelSignature(null);
+                binding.setContract(boundContract);
+            }
+        });
+        AppCompatButton submitBtn = view.findViewById(R.id.submit_btn);
+        submitBtn.setOnClickListener(v -> {
+            viewModel.insert(binding.getContract());
+            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
+            this.navController.navigate(action);
+        });
+        viewModel.getCurrentContract().observe(getViewLifecycleOwner(), newContract -> {
+            this.binding.setContract(newContract);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
+            dateEditText.setText(sdf.format(new Date(newContract.getDate())));
+            if (newContract.isSigned()) {
+                signaturePad.setSignatureBitmap(newContract.getModelSignature());
             }
         });
     }

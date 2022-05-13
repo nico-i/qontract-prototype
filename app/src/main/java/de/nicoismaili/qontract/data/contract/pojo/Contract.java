@@ -1,17 +1,17 @@
 package de.nicoismaili.qontract.data.contract.pojo;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-import de.nicoismaili.qontract.BR;
 import de.nicoismaili.qontract.data.contract.ContractConverters;
 
 /**
@@ -22,7 +22,7 @@ import de.nicoismaili.qontract.data.contract.ContractConverters;
  */
 @Entity(tableName = "contracts")
 @TypeConverters({ContractConverters.class})
-public class Contract extends BaseObservable implements Serializable {
+public class Contract implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contract_id")
     private int id;
@@ -31,9 +31,12 @@ public class Contract extends BaseObservable implements Serializable {
     @ColumnInfo(name = "read")
     private boolean isRead;
     private long date;
+    @NonNull
     private String location;
+    @NonNull
     @ColumnInfo(name = "model_first_name")
     private String modelFirstname;
+    @NonNull
     @ColumnInfo(name = "model_last_name")
     private String modelLastname;
     private String modelAddress;
@@ -45,7 +48,14 @@ public class Contract extends BaseObservable implements Serializable {
     // Contains the entire contract as an html string
     private String contractHTML;
     // Contains the signature of the model as an SVG
-    private String modelSignatureSVG;
+    private Bitmap modelSignature;
+
+    public Contract() {
+        location = "";
+        modelLastname = "";
+        modelFirstname = "";
+        date = new Date().getTime();
+    }
 
     @NonNull
     @Override
@@ -76,16 +86,12 @@ public class Contract extends BaseObservable implements Serializable {
         isSigned = signed;
     }
 
-    @Bindable
     public boolean isRead() {
         return isRead;
     }
 
     public void setRead(boolean read) {
-        if (this.isRead != read) {
-            isRead = read;
-            notifyPropertyChanged(BR.contract);
-        }
+        isRead = read;
     }
 
     public long getDate() {
@@ -97,16 +103,12 @@ public class Contract extends BaseObservable implements Serializable {
     }
 
     @NonNull
-    @Bindable
     public String getLocation() {
         return location;
     }
 
     public void setLocation(@NonNull String location) {
-        if (!this.location.equals(location)) {
-            this.location = location;
-            notifyPropertyChanged(BR.contract);
-        }
+        this.location = location;
     }
 
     @NonNull
@@ -127,30 +129,27 @@ public class Contract extends BaseObservable implements Serializable {
         this.modelLastname = modelLastname;
     }
 
-    @NonNull
     public String getModelAddress() {
         return modelAddress;
     }
 
-    public void setModelAddress(@NonNull String modelAddress) {
+    public void setModelAddress(String modelAddress) {
         this.modelAddress = modelAddress;
     }
 
-    @NonNull
     public String getModelPhone() {
         return modelPhone;
     }
 
-    public void setModelPhone(@NonNull String modelPhone) {
+    public void setModelPhone(String modelPhone) {
         this.modelPhone = modelPhone;
     }
 
-    @NonNull
     public String getModelEmail() {
         return modelEmail;
     }
 
-    public void setModelEmail(@NonNull String modelEmail) {
+    public void setModelEmail(String modelEmail) {
         this.modelEmail = modelEmail;
     }
 
@@ -170,11 +169,11 @@ public class Contract extends BaseObservable implements Serializable {
         this.contractHTML = contractHTML;
     }
 
-    public String getModelSignatureSVG() {
-        return modelSignatureSVG;
+    public Bitmap getModelSignature() {
+        return modelSignature;
     }
 
-    public void setModelSignatureSVG(String modelSignatureSVG) {
-        this.modelSignatureSVG = modelSignatureSVG;
+    public void setModelSignature(Bitmap modelSignature) {
+        this.modelSignature = modelSignature;
     }
 }

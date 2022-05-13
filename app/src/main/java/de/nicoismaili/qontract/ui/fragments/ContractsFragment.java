@@ -1,6 +1,7 @@
 package de.nicoismaili.qontract.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.ActionMode;
@@ -41,9 +42,6 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
         super.onAttach(context);
     }
 
-    // This event is triggered soon after onCreateView().
-    // onViewCreated() is only called if the view returned from onCreateView() is non-null.
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -76,6 +74,7 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
         });
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
+            this.viewModel.setCurrentContract(new Contract());
             NavDirections action = ContractsFragmentDirections.actionContractsFragmentToEditContractFragment();
             this.navController.navigate(action);
         });
@@ -85,11 +84,11 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
     public void onContractClick(int position) {
         Contract clickedContract = Objects.requireNonNull(this.viewModel.getAllContracts().getValue()).get(position);
         if (actionMode == null) {
-            this.viewModel.setCurrentContractId(clickedContract);
+            this.viewModel.setCurrentContract(clickedContract);
             NavDirections action = ContractsFragmentDirections.actionContractsFragmentToEditContractFragment();
             this.navController.navigate(action);
         } else {
-            // Toast.makeText(this, contractViewModel.getContractByPos(position).toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), clickedContract.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -98,10 +97,9 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
         if (this.actionMode != null) {
             return;
         }
-        // Provide haptic feedback to notify long click was heard
+        // Provide haptic feedback to notify long click was noticed
         Vibrator vibe = (Vibrator) requireActivity().getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(50);
-
         this.actionMode = requireActivity().startActionMode(new ActionMode.Callback() {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -118,7 +116,12 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 if (item.getItemId() == R.id.share_selected) {
-                    Toast.makeText(getActivity(), "Share pressed", Toast.LENGTH_SHORT).show();
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Placeholder");
+                    sendIntent.setType("text/plain");
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    startActivity(shareIntent);
                     mode.finish();
                     return true;
                 }

@@ -11,7 +11,7 @@
     </data>
 
     <ScrollView
-        android:id="@+id/fragment_edit_contract"
+        android:id="@+id/edit_contract_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"

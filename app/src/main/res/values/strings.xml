@@ -16,7 +16,7 @@
     <string name="location_input_hint">City, Country</string>
     <string name="location_input_label">Location*</string>
     <string name="date_input_label">Date*</string>
-    <string name="date_input_hint">DD/MM/YYYY</string>
+    <string name="date_input_hint">dd.mm.yyyy</string>
     <string name="firstname_input_label">Firstname*</string>
     <string name="firstname_input_hint">John</string>
     <string name="lastname_input_label">Lastname*</string>
@@ -46,4 +46,6 @@
     <string name="lastname_pref_label">Lastname</string>
     <string name="qr_btn_desc">See QR Code</string>
     <string name="qr_btn">QR-Code</string>
+    <string name="delete">Delete</string>
+    <string name="share">share</string>
 </resources>

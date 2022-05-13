@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import de.nicoismaili.qontract.R;
@@ -39,25 +40,26 @@ class ContractViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         return new ContractViewHolder(view, onContractClickListener);
     }
 
-    public void bind(Contract contractMin) {
-        String firstName = contractMin.getModelFirstname().substring(0, 1).toUpperCase() + contractMin.getModelFirstname().substring(1);
-        String lastName = contractMin.getModelLastname().substring(0, 1).toUpperCase() + contractMin.getModelLastname().substring(1);
+    public void bind(Contract contract) {
+        String firstName = contract.getModelFirstname().substring(0, 1).toUpperCase() + contract.getModelFirstname().substring(1);
+        String lastName = contract.getModelLastname().substring(0, 1).toUpperCase() + contract.getModelLastname().substring(1);
         String fullName = String.format("%s %s", firstName, lastName);
         String firstInitial = "";
         if (fullName.length() > 17) {
             firstInitial = firstName.charAt(0) + ". ";
-            fullName = firstInitial + contractMin.getModelLastname();
+            fullName = firstInitial + contract.getModelLastname();
         }
         if (fullName.length() > 17) {
             fullName = firstInitial + lastName.substring(0, 14) + "…";
         }
         modelNameView.setText(fullName);
-        locationView.setText(contractMin.getLocation());
-        long date = contractMin.getDate();
+        locationView.setText(contract.getLocation());
+        Date date = new Date();
+        date.setTime(contract.getDate());
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
         dateView.setText(dateFormat.format(date));
-        //itemView.setBackgroundColor(contractMin.isSelected() ? Color.GREEN : Color.WHITE);
-        signedView.setBackgroundResource(contractMin.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
+        //itemView.setBackgroundColor(contract.isSelected() ? Color.GREEN : Color.WHITE);
+        signedView.setBackgroundResource(contract.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
     }
 
     /**

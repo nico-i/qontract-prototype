@@ -33,6 +33,8 @@
         android:background="@drawable/bg_white_rounded"
         android:elevation="@dimen/xs_dim"
         android:iconifiedByDefault="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:paddingStart="@dimen/neg_xs_dim"
         android:queryBackground="@android:color/transparent"
         android:queryHint="@string/search_hint"

@@ -48,11 +48,15 @@ public class ContractViewModel extends AndroidViewModel {
         this.searchQuery.setValue("%" + newQuery + "%");
     }
 
-    public void setCurrentContractId(Contract contract) {
+    public void setCurrentContract(Contract contract) {
         this.currentContract.setValue(contract);
     }
 
     public LiveData<Contract> getCurrentContract() {
         return this.currentContract;
+    }
+
+    public void deleteCurrentContract() {
+        repo.delete(this.currentContract.getValue());
     }
 }

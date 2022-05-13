@@ -1,500 +1,466 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_edit_contract"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
-    android:overScrollMode="never"
-    tools:context=".ui.fragments.EditContractFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit_contract_activity"
+    <data>
+
+        <variable
+            name="contract"
+            type="de.nicoismaili.qontract.data.contract.pojo.Contract" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/fragment_edit_contract"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/l_dim">
-        <!-- Header start -->
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:label="@string/add_contract_title"
+        android:overScrollMode="never"
+        tools:context=".ui.fragments.EditContractFragment">
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/neg_s_dim"
-            android:background="@color/white"
-            android:contentDescription="@string/go_to_settings_hint"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toTopOf="@+id/contract_details_title"
-            app:layout_constraintEnd_toStartOf="@+id/activity_1_title"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"
-            app:tint="@color/black"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <TextView
-            android:id="@+id/activity_1_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_release_form"
-            android:textColor="@color/text"
-            android:textSize="@dimen/normal_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/qr_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/neg_s_dim"
-            android:background="@color/white"
-            android:contentDescription="@string/add_new_contract_hint"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_qrcode"
-            app:layout_constraintBottom_toTopOf="@+id/contract_details_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/activity_1_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40"
-            app:tint="@color/black"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <!-- Header End -->
-        <!-- Contract details start -->
-        <TextView
-            android:id="@+id/contract_details_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/contract_details"
-            android:textColor="@color/text"
-            android:textSize="@dimen/normal_text"
-            app:layout_constraintBottom_toTopOf="@+id/location_group"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/location_group"
-            app:layout_constraintTop_toBottomOf="@+id/activity_1_title" />
-
-        <LinearLayout
-            android:id="@+id/location_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xs_dim"
-            android:background="@drawable/bg_white_border_gray_rounded_top"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contract_details_title">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/location_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/location_input_hint"
-                android:inputType="textPostalAddress"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/date_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray_rounded_bottom"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/date_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/date_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/date_input_hint"
-                android:inputType="date"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <!-- Contract details end -->
-        <!-- Model details start -->
-        <TextView
-            android:id="@+id/model_details_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_details_title"
-            android:textColor="@color/text"
-            android:textSize="@dimen/normal_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/location_group"
-            app:layout_constraintTop_toBottomOf="@+id/date_group" />
-
-        <LinearLayout
-            android:id="@+id/first_name_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xs_dim"
-            android:background="@drawable/bg_white_border_gray_rounded_top"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_details_title">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/firstname_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/first_name_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/firstname_input_hint"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lastname_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/first_name_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/lastname_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/lastname_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/lastname_input_hint"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/address_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastname_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/address_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/address_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/address_input_hint"
-                android:inputType="textPostalAddress"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/email_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/email_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/email_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/email_input_hint"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/phone_group"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_white_border_gray_rounded_bottom"
-            android:orientation="vertical"
-            android:padding="@dimen/m_dim"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_group">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_m_dim"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/phone_input_label"
-                android:textColor="@color/text"
-                android:textSize="@dimen/extra_small_text" />
-
-            <EditText
-                android:id="@+id/phone_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/neg_xs_dim"
-                android:autofillHints="firstname"
-                android:background="@color/transparent"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="@string/phone_input_hint"
-                android:inputType="phone"
-                android:minHeight="48dp"
-                android:paddingTop="@dimen/m_dim"
-                android:textColor="@color/blue_500"
-                android:textColorHint="@color/hint_text"
-                android:textSize="@dimen/normal_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <!-- Model details end -->
-        <!-- Read contract start -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/read_contract_btn"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_contract_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_dim"
-            android:background="@drawable/bg_black_rounded"
-            android:backgroundTint="@color/black"
-            android:buttonTint="@color/black"
-            android:fontFamily="@font/poppins_semibold"
-            android:letterSpacing="0.0"
-            android:paddingTop="@dimen/m_dim"
-            android:paddingBottom="@dimen/s_dim"
-            android:text="@string/read_contract_btn"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone_group" />
+            android:paddingHorizontal="@dimen/l_dim">
+            <!-- Contract details start -->
+            <TextView
+                android:id="@+id/contract_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/contract_details"
+                android:textColor="@color/text"
+                android:textSize="@dimen/normal_text"
+                app:layout_constraintBottom_toTopOf="@+id/location_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/location_group"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/s_dim"
-            android:backgroundTint="@color/blue_500"
-            android:buttonTint="@color/blue_500"
-            android:fontFamily="@font/poppins_semibold"
-            android:lines="2"
-            android:text="@string/read_checkbox_label"
-            android:textColor="@color/text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/read_contract_btn" />
-        <!-- Read contract end -->
-        <!-- Model signature start -->
-        <TextView
-            android:id="@+id/model_signature_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/s_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/model_signature_title"
-            android:textColor="@color/text"
-            android:textSize="@dimen/normal_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            <LinearLayout
+                android:id="@+id/location_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/xs_dim"
+                android:background="@drawable/bg_white_border_gray_rounded_top"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contract_details_title">
 
-        <com.github.gcacace.signaturepad.views.SignaturePad
-            android:id="@+id/signature_pad"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="@dimen/s_dim"
-            android:background="@drawable/bg_white_border_gray_rounded"
-            app:clearOnDoubleClick="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signature_input_hint"
-            app:penColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/location_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
 
-        <TextView
-            android:id="@+id/signature_input_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/neg_xs_dim"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/signature_input_hint"
-            android:textColor="@color/hint_text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/model_signature_title" />
+                <EditText
+                    android:id="@+id/location_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/location_input_hint"
+                    android:inputType="textPostalAddress"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.location}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/form_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/form_hint"
-            android:textColor="@color/text"
-            android:textSize="@dimen/extra_small_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
-        <!-- Model signature end -->
-        <!-- Submit button start -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/submit_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/m_dim"
-            android:layout_marginBottom="@dimen/l_dim"
-            android:background="@drawable/bg_blue_rounded"
-            android:fontFamily="@font/poppins_semibold"
-            android:letterSpacing="0.0"
-            android:paddingTop="@dimen/m_dim"
-            android:paddingBottom="@dimen/s_dim"
-            android:text="@string/submit_btn"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/form_hint" />
-        <!-- Submit button end -->
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <LinearLayout
+                android:id="@+id/date_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_white_border_gray_rounded_bottom"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location_group">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/date_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/date_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/date_input_hint"
+                    android:inputType="date"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <!-- Contract details end -->
+            <!-- Model details start -->
+            <TextView
+                android:id="@+id/model_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/l_dim"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/model_details_title"
+                android:textColor="@color/text"
+                android:textSize="@dimen/normal_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/location_group"
+                app:layout_constraintTop_toBottomOf="@+id/date_group" />
+
+            <LinearLayout
+                android:id="@+id/first_name_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/xs_dim"
+                android:background="@drawable/bg_white_border_gray_rounded_top"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/model_details_title">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/firstname_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/first_name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/firstname_input_hint"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.modelFirstname}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lastname_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_white_border_gray"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/first_name_group">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/lastname_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/lastname_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/lastname_input_hint"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.modelLastname}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/address_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_white_border_gray"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastname_group">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/address_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/address_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/address_input_hint"
+                    android:inputType="textPostalAddress"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.modelAddress}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/email_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_white_border_gray"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_group">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/email_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/email_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/email_input_hint"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.modelEmail}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/phone_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/bg_white_border_gray_rounded_bottom"
+                android:orientation="vertical"
+                android:padding="@dimen/m_dim"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_group">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_m_dim"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/phone_input_label"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/extra_small_text" />
+
+                <EditText
+                    android:id="@+id/phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/neg_xs_dim"
+                    android:autofillHints="firstname"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/phone_input_hint"
+                    android:inputType="phone"
+                    android:minHeight="48dp"
+                    android:paddingTop="@dimen/m_dim"
+                    android:text="@={contract.modelPhone}"
+                    android:textColor="@color/blue_500"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="@dimen/normal_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <!-- Model details end -->
+            <!-- Read contract start -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/read_contract_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/l_dim"
+                android:background="@drawable/bg_black_rounded"
+                android:backgroundTint="@color/black"
+                android:buttonTint="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:letterSpacing="0.0"
+                android:paddingTop="@dimen/m_dim"
+                android:paddingBottom="@dimen/s_dim"
+                android:text="@string/read_contract_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/large_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_group" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/s_dim"
+                android:backgroundTint="@color/blue_500"
+                android:buttonTint="@color/blue_500"
+                android:checked="@={contract.read}"
+                android:fontFamily="@font/poppins_semibold"
+                android:lines="2"
+                android:text="@string/read_checkbox_label"
+                android:textColor="@color/text"
+                android:textSize="@dimen/extra_small_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/read_contract_btn" />
+            <!-- Read contract end -->
+            <!-- Model signature start -->
+            <TextView
+                android:id="@+id/model_signature_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/s_dim"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/model_signature_title"
+                android:textColor="@color/text"
+                android:textSize="@dimen/normal_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signature_pad"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="@dimen/s_dim"
+                android:background="@drawable/bg_white_border_gray_rounded"
+                app:clearOnDoubleClick="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signature_input_hint"
+                app:penColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/signature_input_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/neg_xs_dim"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/signature_input_hint"
+                android:textColor="@color/hint_text"
+                android:textSize="@dimen/extra_small_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/model_signature_title" />
+
+            <TextView
+                android:id="@+id/form_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/form_hint"
+                android:textColor="@color/text"
+                android:textSize="@dimen/extra_small_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
+            <!-- Model signature end -->
+            <!-- Submit button start -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m_dim"
+                android:layout_marginBottom="@dimen/l_dim"
+                android:background="@drawable/bg_blue_rounded"
+                android:fontFamily="@font/poppins_semibold"
+                android:letterSpacing="0.0"
+                android:paddingTop="@dimen/m_dim"
+                android:paddingBottom="@dimen/s_dim"
+                android:text="@string/submit_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/large_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/form_hint" />
+            <!-- Submit button end -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

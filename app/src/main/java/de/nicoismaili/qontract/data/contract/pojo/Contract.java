@@ -1,15 +1,17 @@
 package de.nicoismaili.qontract.data.contract.pojo;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
+import de.nicoismaili.qontract.BR;
 import de.nicoismaili.qontract.data.contract.ContractConverters;
 
 /**
@@ -20,24 +22,19 @@ import de.nicoismaili.qontract.data.contract.ContractConverters;
  */
 @Entity(tableName = "contracts")
 @TypeConverters({ContractConverters.class})
-public class Contract implements Serializable {
+public class Contract extends BaseObservable implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contract_id")
     private int id;
     @ColumnInfo(name = "signed")
-    @NonNull
     private boolean isSigned;
     @ColumnInfo(name = "read")
     private boolean isRead;
-    @NonNull
-    private Date date;
-    @NonNull
+    private long date;
     private String location;
     @ColumnInfo(name = "model_first_name")
-    @NonNull
     private String modelFirstname;
     @ColumnInfo(name = "model_last_name")
-    @NonNull
     private String modelLastname;
     private String modelAddress;
     private String modelPhone;
@@ -49,6 +46,19 @@ public class Contract implements Serializable {
     private String contractHTML;
     // Contains the signature of the model as an SVG
     private String modelSignatureSVG;
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", isSigned=" + isSigned +
+                ", date=" + date +
+                ", location='" + location + '\'' +
+                ", modelFirstname='" + modelFirstname + '\'' +
+                ", modelLastname='" + modelLastname + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;
@@ -66,30 +76,37 @@ public class Contract implements Serializable {
         isSigned = signed;
     }
 
+    @Bindable
     public boolean isRead() {
         return isRead;
     }
 
     public void setRead(boolean read) {
-        isRead = read;
+        if (this.isRead != read) {
+            isRead = read;
+            notifyPropertyChanged(BR.contract);
+        }
     }
 
-    @NonNull
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(@NonNull Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
     @NonNull
+    @Bindable
     public String getLocation() {
         return location;
     }
 
     public void setLocation(@NonNull String location) {
-        this.location = location;
+        if (!this.location.equals(location)) {
+            this.location = location;
+            notifyPropertyChanged(BR.contract);
+        }
     }
 
     @NonNull

@@ -25,6 +25,10 @@ android {
         sourceCompatibility "1.8"
         targetCompatibility "1.8"
     }
+    namespace 'de.nicoismaili.qontract'
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -38,6 +42,7 @@ dependencies {
 
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$rootProject.nav_version"
+    implementation 'androidx.preference:preference:1.2.0'
 
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$rootProject.nav_version"

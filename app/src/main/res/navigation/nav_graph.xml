@@ -2,14 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/main_nav"
     app:startDestination="@id/contractsFragment">
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="de.nicoismaili.qontract.ui.fragments.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings">
+        android:name="de.nicoismaili.qontract.ui.fragments.PreferencesFragment"
+        android:label="@string/settings_title">
         <action
             android:id="@+id/action_settingsFragment_to_contractsFragment"
             app:destination="@id/contractsFragment"
@@ -35,12 +34,16 @@
     <fragment
         android:id="@+id/editContractFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.EditContractFragment"
-        android:label="fragment_edit_contract"
+        android:label="@string/add_contract_title"
         tools:layout="@layout/fragment_edit_contract">
         <action
             android:id="@+id/action_editContractFragment_to_contractsFragment"
             app:destination="@id/contractsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="contractId"
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
 </navigation>

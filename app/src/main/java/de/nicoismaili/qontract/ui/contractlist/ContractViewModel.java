@@ -12,17 +12,21 @@ import java.util.List;
 
 import de.nicoismaili.qontract.data.contract.ContractRepository;
 import de.nicoismaili.qontract.data.contract.pojo.Contract;
-import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
 public class ContractViewModel extends AndroidViewModel {
-    private final LiveData<List<ContractMin>> allContracts;
-    private final ContractRepository repo;
+
+    private final LiveData<List<Contract>> allContracts;
+
     private final MutableLiveData<String> searchQuery;
+    private final MutableLiveData<Contract> currentContract;
+
+    private final ContractRepository repo;
 
     public ContractViewModel(Application application) {
         super(application);
         this.repo = new ContractRepository(application);
         this.searchQuery = new MutableLiveData<>();
+        this.currentContract = new MutableLiveData<>();
         this.allContracts = switchMap(this.searchQuery, queryString -> {
             if (queryString.equals("")) {
                 return repo.getAllContracts();
@@ -32,7 +36,7 @@ public class ContractViewModel extends AndroidViewModel {
         });
     }
 
-    public LiveData<List<ContractMin>> getAllContracts() {
+    public LiveData<List<Contract>> getAllContracts() {
         return this.allContracts;
     }
 
@@ -42,5 +46,13 @@ public class ContractViewModel extends AndroidViewModel {
 
     public void setSearchQuery(String newQuery) {
         this.searchQuery.setValue("%" + newQuery + "%");
+    }
+
+    public void setCurrentContractId(Contract contract) {
+        this.currentContract.setValue(contract);
+    }
+
+    public LiveData<Contract> getCurrentContract() {
+        return this.currentContract;
     }
 }

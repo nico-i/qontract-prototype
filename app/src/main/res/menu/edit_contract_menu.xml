@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/settingsFragment"
-        android:contentDescription="@string/go_to_settings_hint"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings_title"
+        android:id="@+id/qr_code_btn"
+        android:contentDescription="@string/qr_btn_desc"
+        android:icon="@drawable/ic_qrcode"
+        android:title="@string/qr_btn"
         app:showAsAction="always" />
 </menu>

@@ -10,20 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import de.nicoismaili.qontract.R;
-import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
+import de.nicoismaili.qontract.data.contract.pojo.Contract;
 
-class ContractMinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+class ContractViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private final TextView modelNameView;
     private final TextView locationView;
     private final TextView dateView;
     private final ImageView signedView;
-    private ContractListAdapter.OnContractClickListener onContractClickListener;
+    private final ContractListAdapter.OnContractClickListener onContractClickListener;
 
-    private ContractMinViewHolder(View itemView, ContractListAdapter.OnContractClickListener onContractClickListener) {
+    private ContractViewHolder(View itemView, ContractListAdapter.OnContractClickListener onContractClickListener) {
         super(itemView);
         this.modelNameView = itemView.findViewById(R.id.model_name_view);
         this.locationView = itemView.findViewById(R.id.location_view);
@@ -34,13 +33,13 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         itemView.setOnLongClickListener(this);
     }
 
-    static ContractMinViewHolder create(ViewGroup parent, ContractListAdapter.OnContractClickListener onContractClickListener) {
+    static ContractViewHolder create(ViewGroup parent, ContractListAdapter.OnContractClickListener onContractClickListener) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_contract, parent, false);
-        return new ContractMinViewHolder(view, onContractClickListener);
+        return new ContractViewHolder(view, onContractClickListener);
     }
 
-    public void bind(ContractMin contractMin) {
+    public void bind(Contract contractMin) {
         String firstName = contractMin.getModelFirstname().substring(0, 1).toUpperCase() + contractMin.getModelFirstname().substring(1);
         String lastName = contractMin.getModelLastname().substring(0, 1).toUpperCase() + contractMin.getModelLastname().substring(1);
         String fullName = String.format("%s %s", firstName, lastName);
@@ -54,7 +53,7 @@ class ContractMinViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         }
         modelNameView.setText(fullName);
         locationView.setText(contractMin.getLocation());
-        Date date = contractMin.getDate();
+        long date = contractMin.getDate();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
         dateView.setText(dateFormat.format(date));
         //itemView.setBackgroundColor(contractMin.isSelected() ? Color.GREEN : Color.WHITE);

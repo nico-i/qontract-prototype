@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:key="photographer_category"
+        app:title="Photographer Details">
+        <EditTextPreference
+            android:key="firstname"
+            android:title="@string/firstname_pref_label"
+            app:key="firstname"
+            app:title="@string/firstname_pref_label"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="lastname"
+            android:title="@string/lastname_pref_label"
+            app:key="lastname"
+            app:title="@string/lastname_pref_label"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="address"
+
+            android:title="@string/address_input_label"
+            app:key="address"
+            app:title="@string/address_input_label"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="email"
+            android:title="@string/email_input_label"
+            app:key="email"
+            app:title="@string/email_input_label"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:key="phone"
+            android:title="@string/phone_input_label"
+            app:key="phone"
+            app:title="@string/phone_input_label"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="model_mode_category"
+        app:title="Model mode">
+        <SwitchPreference
+            android:key="model_mode"
+            android:title="@string/model_mode_label"
+            app:key="model_mode" />
+    </PreferenceCategory>
+</PreferenceScreen>

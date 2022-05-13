@@ -38,13 +38,13 @@ public abstract class ContractRoomDatabase extends RoomDatabase {
                 contract.setModelFirstname("Nico");
                 contract.setModelLastname("Ismaili");
                 contract.setSigned(false);
-                contract.setDate(new Date());
+                contract.setDate(new Date().getTime());
                 contract.setLocation("Location2");
                 dao.insertContract(contract);
                 contract = new Contract();
                 contract.setModelFirstname("Josi");
                 contract.setModelLastname("Paris");
-                contract.setDate(new Date());
+                contract.setDate(new Date().getTime());
                 contract.setLocation("Location1");
                 contract.setSigned(true);
                 dao.insertContract(contract);

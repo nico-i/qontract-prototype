@@ -7,11 +7,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import de.nicoismaili.qontract.data.contract.pojo.Contract;
-import de.nicoismaili.qontract.data.contract.pojo.ContractMin;
 
 public class ContractRepository {
     private final ContractDAO contractDAO;
-    private final LiveData<List<ContractMin>> allContracts;
+    private final LiveData<List<Contract>> allContracts;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -25,7 +24,7 @@ public class ContractRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public LiveData<List<ContractMin>> getAllContracts() {
+    public LiveData<List<Contract>> getAllContracts() {
         return allContracts;
     }
 
@@ -43,11 +42,11 @@ public class ContractRepository {
         ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.updateContract(contract));
     }
 
-    public Contract getContractById(int id) {
+    public LiveData<Contract> getContractById(int id) {
         return contractDAO.getContractById(id);
     }
 
-    public LiveData<List<ContractMin>> getAllContractsByQuery(String query) {
+    public LiveData<List<Contract>> getAllContractsByQuery(String query) {
         return contractDAO.getAllContractsByQueryMinSortedByDate(query);
     }
 

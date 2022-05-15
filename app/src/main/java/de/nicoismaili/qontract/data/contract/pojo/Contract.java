@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -26,8 +27,6 @@ public class Contract implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contract_id")
     private int id;
-    @ColumnInfo(name = "signed")
-    private boolean isSigned;
     @ColumnInfo(name = "read")
     private boolean isRead;
     private long date;
@@ -50,6 +49,22 @@ public class Contract implements Serializable {
     // Contains the signature of the model as an SVG
     private Bitmap modelSignature;
 
+    @Ignore
+    public Contract(Contract another) {
+        this.id = another.id;
+        this.isRead = another.isRead;
+        this.date = another.date;
+        this.location = another.location;
+        this.modelFirstname = another.modelFirstname;
+        this.modelLastname = another.modelLastname;
+        this.modelAddress = another.modelAddress;
+        this.modelPhone = another.modelPhone;
+        this.modelEmail = another.modelEmail;
+        this.images = another.images;
+        this.contractHTML = another.contractHTML;
+        this.modelSignature = another.modelSignature;
+    }
+
     public Contract() {
         location = "";
         modelLastname = "";
@@ -62,7 +77,7 @@ public class Contract implements Serializable {
     public String toString() {
         return "Contract{" +
                 "id=" + id +
-                ", isSigned=" + isSigned +
+                ", isSigned=" + (modelSignature != null) +
                 ", date=" + date +
                 ", location='" + location + '\'' +
                 ", modelFirstname='" + modelFirstname + '\'' +
@@ -76,14 +91,6 @@ public class Contract implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isSigned() {
-        return isSigned;
-    }
-
-    public void setSigned(boolean signed) {
-        isSigned = signed;
     }
 
     public boolean isRead() {
@@ -175,5 +182,9 @@ public class Contract implements Serializable {
 
     public void setModelSignature(Bitmap modelSignature) {
         this.modelSignature = modelSignature;
+    }
+
+    public boolean isValid() {
+        return this.isRead && this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && !this.modelAddress.isEmpty() && this.modelSignature != null;
     }
 }

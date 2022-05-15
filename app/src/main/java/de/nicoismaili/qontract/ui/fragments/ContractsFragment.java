@@ -8,7 +8,6 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -88,7 +87,7 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
             NavDirections action = ContractsFragmentDirections.actionContractsFragmentToEditContractFragment();
             this.navController.navigate(action);
         } else {
-            Toast.makeText(requireActivity(), clickedContract.toString(), Toast.LENGTH_SHORT).show();
+            viewModel.addContractsToSelected(clickedContract);
         }
     }
 
@@ -126,7 +125,7 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
                     return true;
                 }
                 if (item.getItemId() == R.id.delete_selected) {
-                    Toast.makeText(getActivity(), "Delete pressed", Toast.LENGTH_SHORT).show();
+                    viewModel.deleteSelected();
                     mode.finish();
                     return true;
                 }
@@ -138,5 +137,6 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
                 actionMode = null;
             }
         });
+        viewModel.addContractsToSelected(Objects.requireNonNull(this.viewModel.getAllContracts().getValue()).get(position));
     }
 }

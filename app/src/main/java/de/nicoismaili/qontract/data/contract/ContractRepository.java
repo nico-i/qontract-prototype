@@ -38,6 +38,10 @@ public class ContractRepository {
         ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.deleteContract(contract));
     }
 
+    public void delete(List<Contract> contracts) {
+        ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.deleteContracts(contracts));
+    }
+
     public void update(Contract contract) {
         ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.updateContract(contract));
     }

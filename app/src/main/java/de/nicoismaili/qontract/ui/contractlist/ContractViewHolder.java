@@ -59,7 +59,7 @@ class ContractViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
         dateView.setText(dateFormat.format(date));
         //itemView.setBackgroundColor(contract.isSelected() ? Color.GREEN : Color.WHITE);
-        signedView.setBackgroundResource(contract.isSigned() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
+        signedView.setBackgroundResource(contract.isValid() ? R.drawable.ic_signed : R.drawable.ic_unsigned);
     }
 
     /**

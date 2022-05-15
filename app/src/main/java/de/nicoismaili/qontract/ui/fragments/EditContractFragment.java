@@ -117,7 +117,6 @@ public class EditContractFragment extends Fragment {
             @Override
             public void onSigned() {
                 Contract boundContract = binding.getContract();
-                boundContract.setSigned(true);
                 boundContract.setModelSignature(signaturePad.getTransparentSignatureBitmap());
                 binding.setContract(boundContract);
             }
@@ -125,22 +124,37 @@ public class EditContractFragment extends Fragment {
             @Override
             public void onClear() {
                 Contract boundContract = binding.getContract();
-                boundContract.setSigned(false);
                 boundContract.setModelSignature(null);
                 binding.setContract(boundContract);
             }
         });
         AppCompatButton submitBtn = view.findViewById(R.id.submit_btn);
         submitBtn.setOnClickListener(v -> {
-            viewModel.insert(binding.getContract());
-            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
-            this.navController.navigate(action);
+            Contract boundContract = binding.getContract();
+            if (boundContract.isValid()) {
+                viewModel.insert(boundContract);
+                NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
+                this.navController.navigate(action);
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                builder.setMessage("Required fields are missing!")
+                        .setNegativeButton("Cancel", (dialog, id) -> {
+                        })
+                        .setPositiveButton("Submit anyway", (dialog, id) -> {
+                            viewModel.insert(boundContract);
+                            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
+                            navController.navigate(action);
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                // Toast.makeText(requireActivity(), "Please fill out all required fields before submitting.", Toast.LENGTH_LONG).show();
+            }
         });
         viewModel.getCurrentContract().observe(getViewLifecycleOwner(), newContract -> {
-            this.binding.setContract(newContract);
+            this.binding.setContract(new Contract(newContract));
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
             dateEditText.setText(sdf.format(new Date(newContract.getDate())));
-            if (newContract.isSigned()) {
+            if (newContract.getModelSignature() != null) {
                 signaturePad.setSignatureBitmap(newContract.getModelSignature());
             }
         });

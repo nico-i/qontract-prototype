@@ -15,16 +15,10 @@ import de.nicoismaili.qontract.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PreferencesFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class PreferencesFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-    public PreferencesFragment() {
-    }
-
-    public static PreferencesFragment newInstance() {
-        return new PreferencesFragment();
+    public SettingsFragment() {
     }
 
     @Override

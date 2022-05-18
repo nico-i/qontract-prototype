@@ -7,10 +7,10 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="de.nicoismaili.qontract.ui.fragments.PreferencesFragment"
+        android:name="de.nicoismaili.qontract.ui.fragments.SettingsFragment"
         android:label="@string/settings_title">
         <action
-            android:id="@+id/goto_contracts_from_settings"
+            android:id="@+id/goto_contracts_from_settings_action"
             app:destination="@id/contractsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
@@ -43,14 +43,14 @@
         android:label="@string/add_contract_title"
         tools:layout="@layout/fragment_edit_contract">
         <action
-            android:id="@+id/goto_contracts_from_edit_contract"
+            android:id="@+id/goto_contracts_from_edit_action"
             app:destination="@id/contractsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/readContract"
+            android:id="@+id/goto_read_from_edit_action"
             app:destination="@id/readContractFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
@@ -60,17 +60,24 @@
             android:name="isNewContract"
             android:defaultValue="true"
             app:argType="boolean" />
+        <action
+            android:id="@+id/goto_settings_from_edit_action"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/readContractFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.ReadContractFragment"
         android:label="Contract">
         <action
-            android:id="@+id/goto_edit_contract_from_read_contract"
+            android:id="@+id/goto_edit_from_read_action"
             app:destination="@id/editContractFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="isNewContract"
+            android:defaultValue="true"
+            app:argType="boolean" />
     </fragment>
 </navigation>

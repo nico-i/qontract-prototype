@@ -5,34 +5,33 @@
         app:key="photographer_category"
         app:title="Photographer Details">
         <EditTextPreference
-            android:key="firstname"
+            android:key="@string/firstname_key"
             android:title="@string/firstname_pref_label"
-            app:key="firstname"
+            app:key="@string/firstname_key"
             app:title="@string/firstname_pref_label"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="lastname"
+            android:key="@string/lastname_key"
             android:title="@string/lastname_pref_label"
-            app:key="lastname"
+            app:key="@string/lastname_key"
             app:title="@string/lastname_pref_label"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="address"
-
+            android:key="@string/address_key"
             android:title="@string/address_input_label"
-            app:key="address"
+            app:key="@string/address_key"
             app:title="@string/address_input_label"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="email"
+            android:key="@string/email_key"
             android:title="@string/email_input_label"
-            app:key="email"
+            app:key="@string/email_key"
             app:title="@string/email_input_label"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="phone"
+            android:key="@string/phone_key"
             android:title="@string/phone_input_label"
-            app:key="phone"
+            app:key="@string/phone_key"
             app:title="@string/phone_input_label"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
@@ -40,8 +39,8 @@
         app:key="model_mode_category"
         app:title="Model mode">
         <SwitchPreference
-            android:key="model_mode"
+            android:key="@string/model_mode_key"
             android:title="@string/model_mode_label"
-            app:key="model_mode" />
+            app:key="@string/model_mode_key" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -375,13 +375,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/phone_group" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/is_read_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/s_dim"
                 android:backgroundTint="@color/blue_500"
                 android:buttonTint="@color/blue_500"
-                android:checked="@={contract.read}"
                 android:fontFamily="@font/poppins_semibold"
                 android:lines="2"
                 android:text="@string/read_checkbox_label"
@@ -401,7 +400,7 @@
                 android:textColor="@color/text"
                 android:textSize="@dimen/normal_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+                app:layout_constraintTop_toBottomOf="@+id/is_read_check" />
 
             <com.github.gcacace.signaturepad.views.SignaturePad
                 android:id="@+id/signature_pad"

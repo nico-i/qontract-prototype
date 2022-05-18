@@ -46,7 +46,7 @@ import de.nicoismaili.qontract.databinding.FragmentEditContractBinding;
 import de.nicoismaili.qontract.ui.contractlist.ContractViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A {@link Fragment} subclass containing the view for editing (and creating) a contract.
  */
 public class EditContractFragment extends Fragment {
 
@@ -62,17 +62,11 @@ public class EditContractFragment extends Fragment {
     }
 
     /**
-     * Initialize the contents of the Fragment host's standard options menu.  You
-     * should place your menu items in to <var>menu</var>.  For this method
-     * to be called, you must have first called {@link #setHasOptionsMenu}.  See
-     * {@link Activity#onCreateOptionsMenu(Menu) Activity.onCreateOptionsMenu}
-     * for more information.
+     * Initialize the contents of the Fragment host's standard options menu.
+     * Removes menu items if contract is a new contract or model mode is active.
      *
      * @param menu     The options menu in which you place your items.
      * @param inflater Inflates the menu from an XML.
-     * @see #setHasOptionsMenu
-     * @see #onPrepareOptionsMenu
-     * @see #onOptionsItemSelected
      */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -88,6 +82,16 @@ public class EditContractFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     * This hook is called whenever an item in the options menu is pressed and handles the onClickEvent accordingly.
+     *
+     * @param item The menu item that was selected.
+     * @return boolean Return false to allow normal menu processing to
+     * proceed, true to consume it here.
+     * @see #showDeleteContractDialog()
+     * @see #handleShareButtonClick()
+     * @see #showQRCodeDialog()
+     */
     @SuppressLint("InflateParams")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -101,6 +105,14 @@ public class EditContractFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Called to do initial creation of a fragment.  This is called after
+     * {@link #onAttach(Activity)} and before
+     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}. Initializes ViewModel.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +128,13 @@ public class EditContractFragment extends Fragment {
         return this.binding.getRoot();
     }
 
+    /**
+     * Sets all handlers for the views that do not have 2-way data binding, handles a change on the currently selected contract and initializes the {@link NavController}.
+     *
+     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -140,6 +159,11 @@ public class EditContractFragment extends Fragment {
         viewModel.getCurrentContract().observe(getViewLifecycleOwner(), this::onCurrentContractChanged);
     }
 
+    /**
+     * Opens a new {@link DatePickerDialog} when the date EditText is pressed and sets the date field's EditText text to the resulting date.
+     *
+     * @param v The view that was clicked.
+     */
     private void onDateFieldClick(View v) {
         Calendar calendar = Calendar.getInstance();
         new DatePickerDialog(EditContractFragment.this.getContext(), (view1, year, month, dayOfMonth) -> {
@@ -325,6 +349,13 @@ public class EditContractFragment extends Fragment {
         }
     }
 
+
+    /**
+     * Sets the isRead field in the bound contract to the isChecked value. Also clears the signature pad if the checkbox is unchecked.
+     *
+     * @param buttonView The view of the click checkbox.
+     * @param isChecked  The state of the checkbox.
+     */
     private void onIsReadCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Contract boundContract = binding.getContract();
         boundContract.setRead(isChecked);
@@ -334,6 +365,11 @@ public class EditContractFragment extends Fragment {
         binding.setContract(boundContract);
     }
 
+    /**
+     * Navigates to the {@link ReadContractFragment} when the "Read contract" button is pressed.
+     *
+     * @param v The view of the clicked button.
+     */
     private void onReadBtnClick(View v) {
         viewModel.setCurrentContract(binding.getContract());
         NavDirections action = EditContractFragmentDirections.gotoReadFromEditAction();

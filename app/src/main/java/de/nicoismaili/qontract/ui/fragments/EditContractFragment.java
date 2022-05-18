@@ -195,6 +195,7 @@ public class EditContractFragment extends Fragment {
         });
         AppCompatButton readBtn = view.findViewById(R.id.read_contract_btn);
         readBtn.setOnClickListener(v -> {
+            viewModel.setCurrentContract(binding.getContract());
             NavDirections action = EditContractFragmentDirections.gotoReadFromEditAction();
             this.navController.navigate(action);
         });

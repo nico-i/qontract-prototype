@@ -37,7 +37,7 @@ public class ContractListAdapter extends ListAdapter<Contract, ContractViewHolde
 
         @Override
         public boolean areContentsTheSame(@NonNull Contract oldItem, @NonNull Contract newItem) {
-            return oldItem.getModelLastname().equals(newItem.getModelLastname()) && oldItem.getModelFirstname().equals(newItem.getModelFirstname()) && oldItem.getDate() == (newItem.getDate());
+            return oldItem.equals(newItem);
         }
     }
 

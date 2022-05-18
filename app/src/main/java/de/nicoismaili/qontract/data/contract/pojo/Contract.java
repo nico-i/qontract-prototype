@@ -12,6 +12,7 @@ import androidx.room.TypeConverters;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import de.nicoismaili.qontract.data.contract.ContractConverters;
 
@@ -83,6 +84,49 @@ public class Contract implements Serializable {
                 ", modelFirstname='" + modelFirstname + '\'' +
                 ", modelLastname='" + modelLastname + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Contract contract = (Contract) o;
+
+        if (id != contract.id) return false;
+        if (isRead != contract.isRead) return false;
+        if (date != contract.date) return false;
+        if (!location.equals(contract.location)) return false;
+        if (!modelFirstname.equals(contract.modelFirstname)) return false;
+        if (!modelLastname.equals(contract.modelLastname)) return false;
+        if (!Objects.equals(modelAddress, contract.modelAddress))
+            return false;
+        if (!Objects.equals(modelPhone, contract.modelPhone))
+            return false;
+        if (!Objects.equals(modelEmail, contract.modelEmail))
+            return false;
+        if (!Objects.equals(images, contract.images))
+            return false;
+        if (!Objects.equals(contractHTML, contract.contractHTML))
+            return false;
+        return Objects.equals(modelSignature, contract.modelSignature);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (isRead ? 1 : 0);
+        result = 31 * result + (int) (date ^ (date >>> 32));
+        result = 31 * result + location.hashCode();
+        result = 31 * result + modelFirstname.hashCode();
+        result = 31 * result + modelLastname.hashCode();
+        result = 31 * result + (modelAddress != null ? modelAddress.hashCode() : 0);
+        result = 31 * result + (modelPhone != null ? modelPhone.hashCode() : 0);
+        result = 31 * result + (modelEmail != null ? modelEmail.hashCode() : 0);
+        result = 31 * result + (images != null ? images.hashCode() : 0);
+        result = 31 * result + (contractHTML != null ? contractHTML.hashCode() : 0);
+        result = 31 * result + (modelSignature != null ? modelSignature.hashCode() : 0);
+        return result;
     }
 
     public int getId() {

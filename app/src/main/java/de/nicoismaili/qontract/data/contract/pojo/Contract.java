@@ -25,6 +25,8 @@ import de.nicoismaili.qontract.data.contract.ContractConverters;
 @Entity(tableName = "contracts")
 @TypeConverters({ContractConverters.class})
 public class Contract implements Serializable {
+    @Ignore
+    public static final String DATE_STRING_FORMAT = "dd.MM.yyyy";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contract_id")
     private int id;
@@ -229,7 +231,7 @@ public class Contract implements Serializable {
     }
 
     public boolean isValid() {
-        return this.isRead && this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && !this.modelAddress.isEmpty() && this.modelSignature != null;
+        return this.isRead && this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && (this.modelAddress != null && !this.modelAddress.isEmpty()) && this.modelSignature != null;
     }
 
     public boolean hasMinFields() {

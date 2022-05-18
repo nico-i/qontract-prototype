@@ -56,7 +56,7 @@ class ContractViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         locationView.setText(contract.getLocation());
         Date date = new Date();
         date.setTime(contract.getDate());
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
+        DateFormat dateFormat = new SimpleDateFormat(Contract.DATE_STRING_FORMAT, Locale.ROOT);
         dateView.setText(dateFormat.format(date));
         //itemView.setBackgroundColor(contract.isSelected() ? Color.GREEN : Color.WHITE);
         signedView.setBackgroundResource(contract.isValid() ? R.drawable.ic_signed : R.drawable.ic_unsigned);

@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        if (item.getItemId() == R.id.delete_btn) {
+        if (item.getItemId() == R.id.del_btn) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Permanently delete this contract?")
                     .setNegativeButton("Cancel", (dialog, id) -> {
                     })
                     .setPositiveButton("Delete", (dialog, id) -> {
                         viewModel.deleteCurrentContract();
-                        NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
+                        NavDirections action = EditContractFragmentDirections.gotoContractsFromEditContract();
                         navController.navigate(action);
                     });
             AlertDialog alert = builder.create();
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             sendIntent.setType("text/plain");
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
-        } else if (item.getItemId() == R.id.qr_code_btn) {
+        } else if (item.getItemId() == R.id.qr_btn) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setView(getLayoutInflater().inflate(R.layout.dialog_qr, null))
                     .setPositiveButton("Close", (dialog, id) -> {

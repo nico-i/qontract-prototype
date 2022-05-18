@@ -14,7 +14,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,7 +73,8 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             this.viewModel.setCurrentContract(new Contract());
-            NavDirections action = ContractsFragmentDirections.actionContractsFragmentToEditContractFragment();
+            ContractsFragmentDirections.EditContractAction action = ContractsFragmentDirections.editContractAction();
+            action.setIsNewContract(true);
             this.navController.navigate(action);
         });
     }
@@ -84,7 +84,8 @@ public class ContractsFragment extends Fragment implements ContractListAdapter.O
         Contract clickedContract = Objects.requireNonNull(this.viewModel.getAllContracts().getValue()).get(position);
         if (actionMode == null) {
             this.viewModel.setCurrentContract(clickedContract);
-            NavDirections action = ContractsFragmentDirections.actionContractsFragmentToEditContractFragment();
+            ContractsFragmentDirections.EditContractAction action = ContractsFragmentDirections.editContractAction();
+            action.setIsNewContract(false);
             this.navController.navigate(action);
         } else {
             viewModel.addContractsToSelected(clickedContract);

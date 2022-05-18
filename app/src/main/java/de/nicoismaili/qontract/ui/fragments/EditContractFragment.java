@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class EditContractFragment extends Fragment {
     private EditText dateEditText;
     private SignaturePad signaturePad;
     private NavController navController;
+    private AlertDialog.Builder builder;
 
     public EditContractFragment() {
     }
@@ -53,6 +55,11 @@ public class EditContractFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.edit_contract_menu, menu);
+        if (EditContractFragmentArgs.fromBundle(getArguments()).getIsNewContract()) {
+            menu.removeItem(R.id.share_btn);
+            menu.removeItem(R.id.del_btn);
+            menu.removeItem(R.id.qr_btn);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -100,7 +107,7 @@ public class EditContractFragment extends Fragment {
                 if (!binding.getContract().isRead()) {
                     signaturePad.clear();
                     signaturePad.setEnabled(false);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                    builder = new AlertDialog.Builder(requireActivity());
                     builder.setMessage("Please read the contract before signing!")
                             .setCancelable(false)
                             .setPositiveButton("OK", (dialog, id) -> {
@@ -129,7 +136,7 @@ public class EditContractFragment extends Fragment {
         });
         AppCompatButton readBtn = view.findViewById(R.id.read_contract_btn);
         readBtn.setOnClickListener(v -> {
-            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToReadContractFragment();
+            NavDirections action = EditContractFragmentDirections.readContract();
             this.navController.navigate(action);
         });
         AppCompatButton submitBtn = view.findViewById(R.id.submit_btn);
@@ -137,21 +144,24 @@ public class EditContractFragment extends Fragment {
             Contract boundContract = binding.getContract();
             if (boundContract.isValid()) {
                 viewModel.insert(boundContract);
-                NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
+                NavDirections action = EditContractFragmentDirections.gotoContractsFromEditContract();
                 this.navController.navigate(action);
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setMessage("Required fields are missing!")
-                        .setNegativeButton("Cancel", (dialog, id) -> {
-                        })
-                        .setPositiveButton("Submit anyway", (dialog, id) -> {
-                            viewModel.insert(boundContract);
-                            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToContractsFragment();
-                            navController.navigate(action);
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-                // Toast.makeText(requireActivity(), "Please fill out all required fields before submitting.", Toast.LENGTH_LONG).show();
+                if (boundContract.hasMinFields()) {
+                    builder = new AlertDialog.Builder(requireActivity());
+                    builder.setMessage("Required fields are missing!")
+                            .setNegativeButton("Close", (dialog, id) -> {
+                            })
+                            .setPositiveButton("Submit anyway", (dialog, id) -> {
+                                viewModel.insert(boundContract);
+                                NavDirections action = EditContractFragmentDirections.gotoContractsFromEditContract();
+                                navController.navigate(action);
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    Toast.makeText(requireActivity(), "Please fill out the minimum required fields before submitting.", Toast.LENGTH_LONG).show();
+                }
             }
         });
         viewModel.getCurrentContract().observe(getViewLifecycleOwner(), newContract -> {

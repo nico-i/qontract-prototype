@@ -14,12 +14,12 @@
     <string name="model_release_form">Model Release Form</string>
     <string name="contract_details">Contract details</string>
     <string name="location_input_hint">City, Country</string>
-    <string name="location_input_label">Location*</string>
-    <string name="date_input_label">Date*</string>
+    <string name="location_input_label">Location**</string>
+    <string name="date_input_label">Date**</string>
     <string name="date_input_hint">dd.mm.yyyy</string>
-    <string name="firstname_input_label">Firstname*</string>
+    <string name="firstname_input_label">Firstname**</string>
     <string name="firstname_input_hint">John</string>
-    <string name="lastname_input_label">Lastname*</string>
+    <string name="lastname_input_label">Lastname**</string>
     <string name="lastname_input_hint">Doe</string>
     <string name="model_details_title">Model details</string>
     <string name="address_input_label">Address*</string>
@@ -32,7 +32,8 @@
     <string name="read_checkbox_label">I have read the contract and agree with the terms and conditions.</string>
     <string name="model_signature_title">Model\'s signature*</string>
     <string name="signature_input_hint">Double tap to clear signature.</string>
-    <string name="form_hint">*required</string>
+    <string name="form_0_hint">*required fields</string>
+    <string name="form_1_hint">**minimum required fields</string>
     <string name="search_hint">Search contracts</string>
     <string name="settings_title">Settings</string>
     <string name="personal_details_title">Personal Details</string>

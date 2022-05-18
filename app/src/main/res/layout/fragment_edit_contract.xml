@@ -428,16 +428,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/model_signature_title" />
 
             <TextView
-                android:id="@+id/form_hint"
+                android:id="@+id/form_0_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/form_hint"
+                android:text="@string/form_0_hint"
                 android:textColor="@color/text"
                 android:textSize="@dimen/extra_small_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
+
+            <TextView
+                android:id="@+id/form_1_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/form_1_hint"
+                android:textColor="@color/text"
+                android:textSize="@dimen/extra_small_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/form_0_hint" />
             <!-- Model signature end -->
             <!-- Submit button start -->
             <androidx.appcompat.widget.AppCompatButton
@@ -459,7 +469,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/form_hint" />
+                app:layout_constraintTop_toBottomOf="@+id/form_1_hint" />
             <!-- Submit button end -->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -2,6 +2,8 @@ package de.nicoismaili.qontract.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,6 +27,13 @@ public class ReadContractFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.read_contract_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -41,6 +50,7 @@ public class ReadContractFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setHasOptionsMenu(true);
     }
 
     @Override
@@ -54,7 +64,7 @@ public class ReadContractFragment extends Fragment {
         NavController navController = Navigation.findNavController(view);
         AppCompatButton backBtn = view.findViewById(R.id.back_btn);
         backBtn.setOnClickListener(v -> {
-            NavDirections action = ReadContractFragmentDirections.actionReadContractFragmentToEditContractFragment();
+            NavDirections action = ReadContractFragmentDirections.gotoEditContractFromReadContract();
             navController.navigate(action);
         });
         super.onViewCreated(view, savedInstanceState);

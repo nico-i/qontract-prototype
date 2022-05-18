@@ -231,4 +231,8 @@ public class Contract implements Serializable {
     public boolean isValid() {
         return this.isRead && this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && !this.modelAddress.isEmpty() && this.modelSignature != null;
     }
+
+    public boolean hasMinFields() {
+        return this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty();
+    }
 }

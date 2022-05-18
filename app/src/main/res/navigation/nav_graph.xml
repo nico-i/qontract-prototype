@@ -10,7 +10,7 @@
         android:name="de.nicoismaili.qontract.ui.fragments.PreferencesFragment"
         android:label="@string/settings_title">
         <action
-            android:id="@+id/action_settingsFragment_to_contractsFragment"
+            android:id="@+id/goto_contracts_from_settings"
             app:destination="@id/contractsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
@@ -23,17 +23,17 @@
         android:label="@string/contracts"
         tools:layout="@layout/fragment_contracts">
         <action
-            android:id="@+id/action_contractsFragment_to_settingsFragment"
+            android:id="@+id/goto_settings_from_contracts"
             app:destination="@id/settingsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_contractsFragment_to_editContractFragment"
+            android:id="@+id/edit_contract_action"
             app:destination="@id/editContractFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
@@ -43,30 +43,30 @@
         android:label="@string/add_contract_title"
         tools:layout="@layout/fragment_edit_contract">
         <action
-            android:id="@+id/action_editContractFragment_to_contractsFragment"
+            android:id="@+id/goto_contracts_from_edit_contract"
             app:destination="@id/contractsFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <argument
-            android:name="contractId"
-            android:defaultValue="-1"
-            app:argType="integer" />
         <action
-            android:id="@+id/action_editContractFragment_to_readContractFragment"
+            android:id="@+id/readContract"
             app:destination="@id/readContractFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="isNewContract"
+            android:defaultValue="true"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/readContractFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.ReadContractFragment"
         android:label="Contract">
         <action
-            android:id="@+id/action_readContractFragment_to_editContractFragment"
+            android:id="@+id/goto_edit_contract_from_read_contract"
             app:destination="@id/editContractFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,7 +30,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
+import com.bumptech.glide.Glide;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import java.text.SimpleDateFormat;
@@ -74,7 +78,9 @@ public class EditContractFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.edit_contract_menu, menu);
-        if (EditContractFragmentArgs.fromBundle(getArguments()).getIsNewContract()) {
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(requireContext());
+        if (EditContractFragmentArgs.fromBundle(getArguments()).getIsNewContract() || sharedPreferences.getBoolean(getString(R.string.model_mode_key), false)) {
             menu.removeItem(R.id.share_btn);
             menu.removeItem(R.id.del_btn);
             menu.removeItem(R.id.qr_btn);
@@ -142,7 +148,7 @@ public class EditContractFragment extends Fragment {
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             Date calendarDate = calendar.getTime();
             Contract boundContract = binding.getContract();
-            boundContract.setDate(calendarDate.getTime());
+            boundContract.setDateLong(calendarDate.getTime());
             binding.setContract(boundContract);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Contract.DATE_STRING_FORMAT, Locale.ROOT);
             dateField.setText(simpleDateFormat.format(calendarDate));
@@ -151,11 +157,29 @@ public class EditContractFragment extends Fragment {
 
     @SuppressLint("InflateParams")
     private void showQRCodeDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setView(getLayoutInflater().inflate(R.layout.dialog_qr, null))
-                .setPositiveButton("Close", (dialog, id) -> {
-                });
+        View view = View.inflate(requireActivity(), R.layout.dialog_qr, null);
+        ImageView qrImageView = (ImageView) view.findViewById(R.id.qr_code_image_view);
+        view.setBackgroundColor(Color.WHITE);
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(requireContext());
+        String firstname = sharedPreferences.getString(getString(R.string.firstname_key), "");
+        String lastname = sharedPreferences.getString(getString(R.string.lastname_key), "");
+        String address = sharedPreferences.getString(getString(R.string.address_key), "");
+        String email = sharedPreferences.getString(getString(R.string.email_key), "");
+        String phone = sharedPreferences.getString(getString(R.string.phone_key), "");
+        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(requireContext());
+        circularProgressDrawable.setStrokeWidth(this.getResources().getDimension(R.dimen.s_dim));
+        circularProgressDrawable.setCenterRadius(this.getResources().getDimension(R.dimen.l_dim));
+        circularProgressDrawable.setTint(this.getResources().getColor(R.color.blue_500));
+        circularProgressDrawable.start();
+        Glide.with(this).load(String.format("https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=%s\n\n- Photographer -\n\n%s %s\n%s\n%s\n%s", binding.getContract(), firstname, lastname, address, email, phone))
+                .placeholder(circularProgressDrawable)
+                .into(qrImageView);
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setPositiveButton("Close", (dialog, id) -> {
+        });
         AlertDialog alert = builder.create();
+        alert.setView(view);
         alert.show();
     }
 
@@ -201,7 +225,7 @@ public class EditContractFragment extends Fragment {
             if (boundContract.isValid()) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, boundContract.toString());
+                sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s\n\n- Photographer -\n\n%s %s\n%s\n%s\n%s", boundContract, firstname, lastname, address, email, phone));
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
@@ -252,7 +276,7 @@ public class EditContractFragment extends Fragment {
     private void onCurrentContractChanged(Contract newContract) {
         this.binding.setContract(new Contract(newContract));
         SimpleDateFormat sdf = new SimpleDateFormat(Contract.DATE_STRING_FORMAT, Locale.ROOT);
-        this.dateField.setText(sdf.format(new Date(newContract.getDate())));
+        this.dateField.setText(sdf.format(new Date(newContract.getDateLong())));
         this.isReadCheckbox.setChecked(newContract.isRead());
         if (newContract.getModelSignature() != null) {
             this.signaturePad.setSignatureBitmap(newContract.getModelSignature());
@@ -266,31 +290,37 @@ public class EditContractFragment extends Fragment {
             NavDirections action = EditContractFragmentDirections.gotoContractsFromEditAction();
             this.navController.navigate(action);
         } else {
-            if (boundContract.hasMinFields()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setTitle("Submission Error")
-                        .setMessage("Required fields are missing!")
-                        .setNegativeButton("Close", (dialog, id) -> {
-                        })
-                        .setPositiveButton("Submit anyway", (dialog, id) -> {
-                            viewModel.insert(boundContract);
-                            NavDirections action = EditContractFragmentDirections.gotoContractsFromEditAction();
-                            navController.navigate(action);
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
+            SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(requireContext());
+            if (!sharedPreferences.getBoolean(getString(R.string.model_mode_key), false)) {
+                if (boundContract.hasMinFields()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                    builder.setTitle("Submission Error")
+                            .setMessage("Required fields are missing!")
+                            .setNegativeButton("Close", (dialog, id) -> {
+                            })
+                            .setPositiveButton("Submit anyway", (dialog, id) -> {
+                                viewModel.insert(boundContract);
+                                NavDirections action = EditContractFragmentDirections.gotoContractsFromEditAction();
+                                navController.navigate(action);
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                    builder.setTitle("Submission Error")
+                            .setMessage("Please fill out the minimum required fields before submitting!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", (dialog, id) -> {
+                                signaturePad.clear();
+                                signaturePad.setEnabled(true);
+                                signaturePad.clearFocus();
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-                builder.setTitle("Submission Error")
-                        .setMessage("Please fill out the minimum required fields before submitting!")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", (dialog, id) -> {
-                            signaturePad.clear();
-                            signaturePad.setEnabled(true);
-                            signaturePad.clearFocus();
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
+                Toast.makeText(requireContext(), "Please fill out all required fields before submitting!", Toast.LENGTH_LONG).show();
             }
         }
     }

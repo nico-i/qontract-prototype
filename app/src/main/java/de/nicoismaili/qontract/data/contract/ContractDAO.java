@@ -29,7 +29,7 @@ public interface ContractDAO {
     @Query("SELECT * FROM contracts WHERE contract_id == :id")
     LiveData<Contract> getContractById(int id);
 
-    @Query("SELECT * FROM contracts ORDER BY date DESC")
+    @Query("SELECT * FROM contracts ORDER BY dateLong DESC")
     LiveData<List<Contract>> getAllContractsMinSortedByDate();
 
     @Query("SELECT * FROM contracts WHERE model_first_name || ' ' || model_last_name LIKE :query")

@@ -8,7 +8,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,34 +24,6 @@ public abstract class ContractRoomDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-                ContractDAO dao = INSTANCE.contractDAO();
-                dao.deleteAll();
-
-                Contract contract = new Contract();
-                contract.setModelFirstname("Nico");
-                contract.setModelLastname("Ismaili");
-                contract.setDate(new Date().getTime());
-                contract.setLocation("Location2");
-                contract.setModelAddress("Bertha-Heß Str. 3, 55469 Simmern");
-                contract.setModelPhone("+4917547117612");
-                contract.setModelEmail("nico@ismaili.de");
-                dao.insertContract(contract);
-                contract = new Contract();
-                contract.setModelFirstname("Josi");
-                contract.setModelLastname("Paris");
-                contract.setModelAddress("Bertha-Heß Str. 3, 55469 Simmern");
-                contract.setModelPhone("+1234567789");
-                contract.setModelEmail("josi@paris.de");
-                contract.setDate(new Date().getTime());
-                contract.setLocation("Location1");
-                dao.insertContract(contract);
-            });
         }
     };
 
@@ -61,7 +32,7 @@ public abstract class ContractRoomDatabase extends RoomDatabase {
             synchronized (ContractRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ContractRoomDatabase.class, "contracts_database")
+                                    ContractRoomDatabase.class, "contracts_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

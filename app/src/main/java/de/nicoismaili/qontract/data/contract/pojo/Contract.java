@@ -10,8 +10,10 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import de.nicoismaili.qontract.data.contract.ContractConverters;
@@ -32,7 +34,7 @@ public class Contract implements Serializable {
     private int id;
     @ColumnInfo(name = "read")
     private boolean isRead;
-    private long date;
+    private long dateLong;
     @NonNull
     private String location;
     @NonNull
@@ -47,8 +49,6 @@ public class Contract implements Serializable {
     @ColumnInfo(name = "images_json")
     // Contains paths to the images belonging to a contract
     private List<String> images;
-    // Contains the entire contract as an html string
-    private String contractHTML;
     // Contains the signature of the model as an SVG
     private Bitmap modelSignature;
 
@@ -56,7 +56,7 @@ public class Contract implements Serializable {
     public Contract(Contract another) {
         this.id = another.id;
         this.isRead = another.isRead;
-        this.date = another.date;
+        this.dateLong = another.dateLong;
         this.location = another.location;
         this.modelFirstname = another.modelFirstname;
         this.modelLastname = another.modelLastname;
@@ -64,7 +64,6 @@ public class Contract implements Serializable {
         this.modelPhone = another.modelPhone;
         this.modelEmail = another.modelEmail;
         this.images = another.images;
-        this.contractHTML = another.contractHTML;
         this.modelSignature = another.modelSignature;
     }
 
@@ -72,20 +71,15 @@ public class Contract implements Serializable {
         location = "";
         modelLastname = "";
         modelFirstname = "";
-        date = new Date().getTime();
+        dateLong = new Date().getTime();
+        modelSignature = null;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "Contract{" +
-                "id=" + id +
-                ", isSigned=" + (modelSignature != null) +
-                ", date=" + date +
-                ", location='" + location + '\'' +
-                ", modelFirstname='" + modelFirstname + '\'' +
-                ", modelLastname='" + modelLastname + '\'' +
-                '}';
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_STRING_FORMAT, Locale.ROOT);
+        return String.format("Model Release Form (%s, %s)\n\n- Model -\n\n%s %s\n%s%s%ssigned: %s", sdf.format(new Date(dateLong)), location, modelFirstname, modelLastname, modelAddress != null && !modelAddress.isEmpty() ? modelAddress + '\n' : "", modelPhone != null && !modelPhone.isEmpty() ? modelPhone + '\n' : "", modelEmail != null && !modelEmail.isEmpty() ? modelEmail + '\n' : "", modelSignature != null);
     }
 
     @Override
@@ -97,7 +91,7 @@ public class Contract implements Serializable {
 
         if (id != contract.id) return false;
         if (isRead != contract.isRead) return false;
-        if (date != contract.date) return false;
+        if (dateLong != contract.dateLong) return false;
         if (!location.equals(contract.location)) return false;
         if (!modelFirstname.equals(contract.modelFirstname)) return false;
         if (!modelLastname.equals(contract.modelLastname)) return false;
@@ -109,8 +103,6 @@ public class Contract implements Serializable {
             return false;
         if (!Objects.equals(images, contract.images))
             return false;
-        if (!Objects.equals(contractHTML, contract.contractHTML))
-            return false;
         return Objects.equals(modelSignature, contract.modelSignature);
     }
 
@@ -118,7 +110,7 @@ public class Contract implements Serializable {
     public int hashCode() {
         int result = id;
         result = 31 * result + (isRead ? 1 : 0);
-        result = 31 * result + (int) (date ^ (date >>> 32));
+        result = 31 * result + (int) (dateLong ^ (dateLong >>> 32));
         result = 31 * result + location.hashCode();
         result = 31 * result + modelFirstname.hashCode();
         result = 31 * result + modelLastname.hashCode();
@@ -126,7 +118,6 @@ public class Contract implements Serializable {
         result = 31 * result + (modelPhone != null ? modelPhone.hashCode() : 0);
         result = 31 * result + (modelEmail != null ? modelEmail.hashCode() : 0);
         result = 31 * result + (images != null ? images.hashCode() : 0);
-        result = 31 * result + (contractHTML != null ? contractHTML.hashCode() : 0);
         result = 31 * result + (modelSignature != null ? modelSignature.hashCode() : 0);
         return result;
     }
@@ -147,12 +138,12 @@ public class Contract implements Serializable {
         isRead = read;
     }
 
-    public long getDate() {
-        return date;
+    public long getDateLong() {
+        return dateLong;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setDateLong(long dateLong) {
+        this.dateLong = dateLong;
     }
 
     @NonNull
@@ -214,14 +205,6 @@ public class Contract implements Serializable {
         this.images = images;
     }
 
-    public String getContractHTML() {
-        return contractHTML;
-    }
-
-    public void setContractHTML(String contractHTML) {
-        this.contractHTML = contractHTML;
-    }
-
     public Bitmap getModelSignature() {
         return modelSignature;
     }
@@ -231,10 +214,10 @@ public class Contract implements Serializable {
     }
 
     public boolean isValid() {
-        return this.isRead && this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && (this.modelAddress != null && !this.modelAddress.isEmpty()) && this.modelSignature != null;
+        return this.isRead && this.dateLong != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty() && (this.modelAddress != null && !this.modelAddress.isEmpty()) && this.modelSignature != null;
     }
 
     public boolean hasMinFields() {
-        return this.date != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty();
+        return this.dateLong != 0 && !this.location.isEmpty() && !this.modelFirstname.isEmpty() && !this.modelLastname.isEmpty();
     }
 }

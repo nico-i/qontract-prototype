@@ -32,6 +32,11 @@ android {
 }
 
 dependencies {
+    // Glide Dependency
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:$rootProject.nav_version"
     implementation "androidx.navigation:navigation-ui:$rootProject.nav_version"

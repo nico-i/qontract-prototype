@@ -44,7 +44,6 @@ public class EditContractFragment extends Fragment {
     private ContractViewModel viewModel;
     private EditText dateEditText;
     private SignaturePad signaturePad;
-    private AppCompatButton readContractBtn;
     private NavController navController;
 
     public EditContractFragment() {
@@ -127,6 +126,11 @@ public class EditContractFragment extends Fragment {
                 boundContract.setModelSignature(null);
                 binding.setContract(boundContract);
             }
+        });
+        AppCompatButton readBtn = view.findViewById(R.id.read_contract_btn);
+        readBtn.setOnClickListener(v -> {
+            NavDirections action = EditContractFragmentDirections.actionEditContractFragmentToReadContractFragment();
+            this.navController.navigate(action);
         });
         AppCompatButton submitBtn = view.findViewById(R.id.submit_btn);
         submitBtn.setOnClickListener(v -> {

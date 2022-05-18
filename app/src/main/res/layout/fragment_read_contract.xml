@@ -2,24 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/edit_contract_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/l_dim">
     <!-- Contract details start -->
 
     <ScrollView
-        android:id="@+id/edit_contract_scroll_view"
+        android:id="@+id/contract_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/m_dim"
         android:background="@drawable/bg_white_border_gray_rounded"
         android:label="@string/add_contract_title"
+
         android:overScrollMode="never"
         android:padding="@dimen/s_dim"
-
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/back_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -32,24 +31,8 @@
             android:text="@string/lorem_ipsum" />
     </ScrollView>
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue_500"
-        android:buttonTint="@color/blue_500"
-        android:checked="@={contract.read}"
-        android:fontFamily="@font/poppins_semibold"
-        android:lines="2"
-        android:text="@string/read_checkbox_label"
-        android:textColor="@color/text"
-        android:textSize="@dimen/extra_small_text"
-        app:layout_constraintBottom_toTopOf="@+id/read_contract_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/read_contract_btn"
+        android:id="@+id/back_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/l_dim"

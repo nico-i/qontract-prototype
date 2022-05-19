@@ -20,7 +20,7 @@
             android:key="@string/address_key"
             android:title="@string/address_input_label"
             app:key="@string/address_key"
-            app:title="@string/address_input_label"
+            app:title="@string/address_pref_label"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             android:key="@string/email_key"

@@ -45,6 +45,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="firstname_pref_label">Firstname</string>
     <string name="lastname_pref_label">Lastname</string>
+    <string name="address_pref_label">Address</string>
     <string name="qr_btn_desc">See QR Code</string>
     <string name="qr_btn">QR-Code</string>
     <string name="delete">Delete</string>

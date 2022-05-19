@@ -1,54 +1,67 @@
 package de.nicoismaili.qontract.data.contract;
 
 import android.app.Application;
+
 import androidx.lifecycle.LiveData;
+
 import de.nicoismaili.qontract.data.contract.pojo.Contract;
+
 import java.util.List;
 
 public class ContractRepository {
-  private final ContractDAO contractDAO;
-  private final LiveData<List<Contract>> allContracts;
+    private final ContractDAO contractDAO;
 
-  // Note that in order to unit test the WordRepository, you have to remove the Application
-  // dependency. This adds complexity and much more code, and this sample is not about testing.
-  // See the BasicSample in the android-architecture-components repository at
-  // https://github.com/googlesamples
-  public ContractRepository(Application application) {
-    ContractRoomDatabase db = ContractRoomDatabase.getDatabase(application);
-    contractDAO = db.contractDAO();
-    allContracts = contractDAO.getAllContractsMinSortedByDate();
-  }
+    public ContractRepository(Application application) {
+        ContractRoomDatabase db = ContractRoomDatabase.getDatabase(application);
+        contractDAO = db.contractDAO();
+    }
 
-  // Room executes all queries on a separate thread.
-  // Observed LiveData will notify the observer when the data has changed.
-  public LiveData<List<Contract>> getAllContracts() {
-    return allContracts;
-  }
 
-  // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-  // that you're not doing any long running operations on the main thread, blocking the UI.
-  public void insert(Contract contract) {
-    ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.insertContract(contract));
-  }
+    /**
+     * Get a List of all Contracts currently in the database.
+     *
+     * @return List of all Contracts currently in the database
+     */
+    public LiveData<List<Contract>> getAllContracts() {
+        return contractDAO.getAllContractsMinSortedByDate();
+    }
 
-  public void delete(Contract contract) {
-    ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.deleteContract(contract));
-  }
 
-  public void delete(List<Contract> contracts) {
-    ContractRoomDatabase.databaseWriteExecutor.execute(
-        () -> contractDAO.deleteContracts(contracts));
-  }
+    /**
+     * Insert a Contract into the database.
+     *
+     * @param contract Contract to be inserted
+     */
+    public void insert(Contract contract) {
+        ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.insertContract(contract));
+    }
 
-  public void update(Contract contract) {
-    ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.updateContract(contract));
-  }
+    /**
+     * Delete a Contract in the database.
+     *
+     * @param contract Contract to be deleted
+     */
+    public void delete(Contract contract) {
+        ContractRoomDatabase.databaseWriteExecutor.execute(() -> contractDAO.deleteContract(contract));
+    }
 
-  public LiveData<Contract> getContractById(int id) {
-    return contractDAO.getContractById(id);
-  }
+    /**
+     * Delete a List of Contracts.
+     *
+     * @param contracts List of to be deleted Contracts
+     */
+    public void delete(List<Contract> contracts) {
+        ContractRoomDatabase.databaseWriteExecutor.execute(
+                () -> contractDAO.deleteContracts(contracts));
+    }
 
-  public LiveData<List<Contract>> getAllContractsByQuery(String query) {
-    return contractDAO.getAllContractsByQueryMinSortedByDate(query);
-  }
+    /**
+     * Get a List of Contracts of which the model's name contains a give String.
+     *
+     * @param query String to be filtered by
+     * @return Filtered List of Contracts contained in a {@link LiveData}
+     */
+    public LiveData<List<Contract>> getAllContractsByQuery(String query) {
+        return contractDAO.getAllContractsByQueryMinSortedByDate(query);
+    }
 }

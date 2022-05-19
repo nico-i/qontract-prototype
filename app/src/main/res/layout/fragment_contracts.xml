@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:label="@string/contracts"
+    android:label="@string/title_view_contracts"
     android:paddingHorizontal="@dimen/m_dim"
     tools:context=".ui.fragments.ContractsFragment">
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="@dimen/m_dim"
-        android:contentDescription="@string/add_contract"
+        android:contentDescription="@string/btn_add_contract"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
         android:focusableInTouchMode="false"
         android:paddingStart="@dimen/neg_xs_dim"
         android:queryBackground="@android:color/transparent"
-        android:queryHint="@string/search_hint"
-        app:defaultQueryHint="@string/search_hint"
+        android:queryHint="@string/hint_search"
+        app:defaultQueryHint="@string/hint_search"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview"
         app:layout_constraintTop_toTopOf="parent"

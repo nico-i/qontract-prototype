@@ -110,7 +110,7 @@ public class ContractsFragment extends Fragment
                   @Override
                   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     mode.getMenuInflater().inflate(R.menu.select_menu, menu);
-                    mode.setTitle(getResources().getString(R.string.select_contracts));
+                    mode.setTitle(getResources().getString(R.string.title_actionbar_select_contracts));
                     return true;
                   }
 

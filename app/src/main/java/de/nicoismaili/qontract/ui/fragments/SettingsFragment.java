@@ -2,9 +2,11 @@ package de.nicoismaili.qontract.ui.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,15 +39,32 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     * Called to do initial creation of a fragment. This is called after
+     * {@link #onAttach(Activity)} and before
+     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * has returned, but before any saved state has been restored in to the view.
+     * Calls upon {@link PreferenceFragmentCompat#setHasOptionsMenu(boolean)} with true.
+     *
+     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     /**

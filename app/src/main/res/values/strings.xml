@@ -1,58 +1,87 @@
 <resources>
-    <string name="app_name">Qontract</string>
-    <string name="add_contract">Add contract</string>
-    <string name="hint_first_name">Your first name…</string>
-    <string name="submit_btn">Submit</string>
-    <string name="empty_not_saved">Contract not saved because it is empty.</string>
-    <string name="calendar_icon_alt">Calendar icon</string>
-    <string name="location_pin_icon_alt">Location pin icon</string>
-    <string name="signed_icon_alt">Signed icon</string>
-    <string name="add_new_contract_hint">Add new contract</string>
-    <string name="go_to_settings_hint">Go to settings view</string>
-    <string name="contracts">Contracts</string>
-    <string name="first_name_input_label">First Name*</string>
-    <string name="model_release_form">Model Release Form</string>
-    <string name="contract_details">Contract details</string>
-    <string name="location_input_hint">City, Country</string>
-    <string name="location_input_label">Location**</string>
-    <string name="date_input_label">Date**</string>
-    <string name="date_input_hint">dd.mm.yyyy</string>
-    <string name="firstname_input_label">Firstname**</string>
-    <string name="firstname_input_hint">John</string>
-    <string name="lastname_input_label">Lastname**</string>
-    <string name="lastname_input_hint">Doe</string>
-    <string name="model_details_title">Model details</string>
-    <string name="address_input_label">Address*</string>
-    <string name="address_input_hint">Street 1, 12345 City, Country</string>
-    <string name="email_input_label">Email</string>
-    <string name="email_input_hint">example@mail.com</string>
-    <string name="phone_input_label">Phone</string>
-    <string name="phone_input_hint">+12 345 678 90</string>
-    <string name="read_contract_btn">Read Contract</string>
-    <string name="read_checkbox_label">I have read the contract and agree with the terms and conditions.</string>
-    <string name="model_signature_title">Model\'s signature*</string>
-    <string name="signature_input_hint">Double tap to clear signature.</string>
-    <string name="form_0_hint">*required fields</string>
-    <string name="form_1_hint">**minimum required fields</string>
-    <string name="search_hint">Search contracts</string>
-    <string name="settings_title">Settings</string>
-    <string name="personal_details_title">Personal Details</string>
-    <string name="app_settings_title">App settings</string>
-    <string name="model_mode_label">Enable model mode</string>
-    <string name="select_contracts">Select contracts</string>
-    <string name="add_contract_title">Add contract</string>
-    <string name="add">Add</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="firstname_pref_label">Firstname</string>
-    <string name="lastname_pref_label">Lastname</string>
-    <string name="address_pref_label">Address</string>
-    <string name="qr_btn_desc">See QR Code</string>
-    <string name="qr_btn">QR-Code</string>
-    <string name="delete">Delete</string>
-    <string name="share">share</string>
-    <string name="qr_image_desc">QR-Code for the selected contract.</string>
-    <string name="back_to_contract">Back to contract</string>
-    <string name="model_release_txt">
+    <!-- start titles -->
+    <string name="title_app">Qontract</string>
+
+    <string name="title_view_settings">Settings</string>
+    <string name="title_view_contracts">Contracts</string>
+    <string name="title_view_del_contract">Delete contract</string>
+    <string name="title_view_add_contract">Add contract</string>
+
+    <string name="title_dialog_submit_error">Submission Error</string>
+    <string name="title_dialog_export_error">Export Error</string>
+
+    <string name="title_actionbar_select_contracts">Select contracts</string>
+    <!-- end titles -->
+
+    <!-- start labels -->
+    <string name="label_contract_details">Contract details</string>
+    <string name="label_min_req_location">Location**</string>
+    <string name="label_min_req_date">Date**</string>
+
+    <string name="label_model_details">Model details</string>
+    <string name="label_min_req_firstname">Firstname**</string>
+    <string name="label_min_req_lastname">Lastname**</string>
+    <string name="label_req_address">Address*</string>
+    <string name="label_email">Email</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_model_signature">Model\'s signature*</string>
+
+    <string name="label_personal_details">Personal Details</string>
+    <string name="label_firstname">Firstname</string>
+    <string name="label_lastname">Lastname</string>
+    <string name="label_address">Address</string>
+    <string name="label_model_mode">Enable model mode</string>
+    <!-- end labels -->
+
+    <!-- start hints -->
+    <string name="hint_add_new_contract">Add new contract</string>
+    <string name="hint_go_to_settings">Go to settings view</string>
+    <string name="hint_location">City, Country</string>
+    <string name="hint_date">dd.mm.yyyy</string>
+    <string name="hint_firstname">John</string>
+    <string name="hint_lastname">Doe</string>
+    <string name="hint_address">Street 1, 12345 City, Country</string>
+    <string name="hint_email">example@mail.com</string>
+    <string name="hint_phone">+12 345 678 90</string>
+    <string name="hint_req">*required fields</string>
+    <string name="hint_min_req">**minimum required fields</string>
+    <string name="hint_search">Search contracts</string>
+    <string name="hint_signature">Double tap to clear signature.</string>
+    <!-- end hints -->
+
+    <!-- start alt texts -->
+    <string name="alt_calendar_icon">Calendar icon</string>
+    <string name="alt_location_pin_icon">Location pin icon</string>
+    <string name="alt_signed_icon">Signed / Unsigned icon</string>
+    <string name="alt_qr_img">QR-Code for the selected contract.</string>
+    <!-- end alt texts -->
+
+    <!-- start buttons -->
+    <string name="btn_add_contract">Add contract</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_read_contract">Read Contract</string>
+    <string name="btn_back_to_contract">Back to contract</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_share">Share</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_submit_anyway">Submit anyway</string>
+    <string name="btn_go_to_settings">Go to settings</string>
+    <string name="btn_qr">See QR Code</string>
+    <!-- end buttons -->
+
+    <!-- start keys -->
+    <string name="key_firstname">p_firstname</string>
+    <string name="key_lastname">p_lastname</string>
+    <string name="key_address">p_address</string>
+    <string name="key_email">p_email</string>
+    <string name="key_phone">p_phone</string>
+    <string name="key_model_mode">model_mode</string>
+    <!-- end keys -->
+
+    <!-- start texts -->
+    <string name="txt_agree_to_terms">I have read the contract and agree with the terms and conditions.</string>
+    <string name="txt_model_release">
         In consideration of my engagement as a model, and for other good and valuable consideration herein acknowledged as received, I hereby grant
         the following rights and permissions to the Photographer (see below), his/her heirs, legal representatives, and assigns, those for
         whom Photographer is acting, and those acting with his/her authority and permission. They have the irrevocable, perpetual and unrestricted right
@@ -71,22 +100,17 @@
         prior to its execution, and I am fully familiar with the contents of this document. This document shall be binding upon me and my heirs, legal
         representatives, and assigns.
     </string>
-    <string name="firstname_key">p_firstname</string>
-    <string name="lastname_key">p_lastname</string>
-    <string name="address_key">p_address</string>
-    <string name="email_key">p_email</string>
-    <string name="phone_key">p_phone</string>
-    <string name="model_mode_key">model_mode</string>
-    <string name="toast_min_fields_error">Fill out the minimum required fields to continue!</string>
-    <string name="submit_anyway">Submit anyway</string>
-    <string name="req_fields_error">Required fields are missing!</string>
-    <string name="close">Close</string>
-    <string name="submit_error_title">Submission Error</string>
+    <string name="txt_qr_code">QR-Code</string>
+    <string name="txt_photographer">Photographer</string>
+    <!-- end texts -->
+    <!-- start errors -->
+    <string name="error_min_fields">Fill out the minimum required fields to continue!</string>
+    <string name="error_req_fields">Required fields are missing!</string>
+    <string name="error_photographer_details">Photographer details are not set!</string>
+    <!-- end errors -->
+    <!-- start prompts -->
     <string name="prompt_read_before_signing">Please read the contract before signing!</string>
-    <string name="photographer">Photographer</string>
-    <string name="go_to_settings_btn">Go to settings</string>
-    <string name="photographer_details_error">Photographer details are not set!</string>
-    <string name="export_error_message">Export Error</string>
-    <string name="del_contract_prompt">Permanently delete this contract?</string>
-    <string name="del_contract_title">Delete contract</string>
+    <string name="prompt_del_contract">Permanently delete this contract?</string>
+    <!-- end prompts -->
+
 </resources>

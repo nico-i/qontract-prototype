@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_dim"
-            android:contentDescription="@string/calendar_icon_alt"
+            android:contentDescription="@string/alt_calendar_icon"
             card_view:layout_constraintStart_toEndOf="@+id/location_view"
             card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
             card_view:srcCompat="@drawable/ic_calendar" />
@@ -75,7 +75,7 @@
             android:id="@+id/location_pin_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/location_pin_icon_alt"
+            android:contentDescription="@string/alt_location_pin_icon"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/model_name_view"
             card_view:srcCompat="@drawable/ic_pin" />
@@ -84,7 +84,7 @@
             android:id="@+id/signed_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/signed_icon_alt"
+            android:contentDescription="@string/alt_signed_icon"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />

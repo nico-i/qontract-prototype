@@ -33,9 +33,9 @@ public class ContractConverters {
   @TypeConverter
   public static String fromBitmapToString(Bitmap bm) {
     if (bm != null) {
-      ByteArrayOutputStream bAOS = new ByteArrayOutputStream();
-      bm.compress(Bitmap.CompressFormat.PNG, 100, bAOS); // bm is the bitmap object
-      byte[] b = bAOS.toByteArray();
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      bm.compress(Bitmap.CompressFormat.PNG, 100, baos); // bm is the bitmap object
+      byte[] b = baos.toByteArray();
       return Base64.encodeToString(b, Base64.DEFAULT);
     }
     return "";

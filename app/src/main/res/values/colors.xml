@@ -13,7 +13,7 @@
     <color name="gray_200">#FFC7C8C9</color>
     <!-- Text colors -->
     <color name="text">#FF212529</color>
-    <color name="hint_text">#FF767676</color>
+    <color name="hint_text">#A5A5A5</color>
     <!-- Standard -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

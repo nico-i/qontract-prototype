@@ -5,42 +5,42 @@
         app:key="photographer_category"
         app:title="Photographer Details">
         <EditTextPreference
-            android:key="@string/firstname_key"
-            android:title="@string/firstname_pref_label"
-            app:key="@string/firstname_key"
-            app:title="@string/firstname_pref_label"
+            android:key="@string/key_firstname"
+            android:title="@string/label_firstname"
+            app:key="@string/key_firstname"
+            app:title="@string/label_firstname"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="@string/lastname_key"
-            android:title="@string/lastname_pref_label"
-            app:key="@string/lastname_key"
-            app:title="@string/lastname_pref_label"
+            android:key="@string/key_lastname"
+            android:title="@string/label_lastname"
+            app:key="@string/key_lastname"
+            app:title="@string/label_lastname"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="@string/address_key"
-            android:title="@string/address_input_label"
-            app:key="@string/address_key"
-            app:title="@string/address_pref_label"
+            android:key="@string/key_address"
+            android:title="@string/label_req_address"
+            app:key="@string/key_address"
+            app:title="@string/label_address"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="@string/email_key"
-            android:title="@string/email_input_label"
-            app:key="@string/email_key"
-            app:title="@string/email_input_label"
+            android:key="@string/key_email"
+            android:title="@string/label_email"
+            app:key="@string/key_email"
+            app:title="@string/label_email"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:key="@string/phone_key"
-            android:title="@string/phone_input_label"
-            app:key="@string/phone_key"
-            app:title="@string/phone_input_label"
+            android:key="@string/key_phone"
+            android:title="@string/label_phone"
+            app:key="@string/key_phone"
+            app:title="@string/label_phone"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="model_mode_category"
         app:title="Model mode">
         <SwitchPreference
-            android:key="@string/model_mode_key"
-            android:title="@string/model_mode_label"
-            app:key="@string/model_mode_key" />
+            android:key="@string/key_model_mode"
+            android:title="@string/label_model_mode"
+            app:key="@string/key_model_mode" />
     </PreferenceCategory>
 </PreferenceScreen>

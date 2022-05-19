@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/settingsFragment"
-        android:contentDescription="@string/go_to_settings_hint"
+        android:contentDescription="@string/hint_go_to_settings"
         android:icon="@drawable/ic_settings"
-        android:title="@string/settings_title"
+        android:title="@string/title_view_settings"
         app:showAsAction="always" />
 </menu>

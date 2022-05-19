@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.SettingsFragment"
-        android:label="@string/settings_title">
+        android:label="@string/title_view_settings">
         <action
             android:id="@+id/goto_contracts_from_settings_action"
             app:destination="@id/contractsFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/contractsFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.ContractsFragment"
-        android:label="@string/contracts"
+        android:label="@string/title_view_contracts"
         tools:layout="@layout/fragment_contracts">
         <action
             android:id="@+id/goto_settings_from_contracts"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/editContractFragment"
         android:name="de.nicoismaili.qontract.ui.fragments.EditContractFragment"
-        android:label="@string/add_contract_title"
+        android:label="@string/title_view_add_contract"
         tools:layout="@layout/fragment_edit_contract">
         <action
             android:id="@+id/goto_contracts_from_edit_action"

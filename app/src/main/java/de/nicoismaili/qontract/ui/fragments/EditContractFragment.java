@@ -75,7 +75,7 @@ public class EditContractFragment extends Fragment {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
         if (EditContractFragmentArgs.fromBundle(getArguments()).getIsNewContract()
-                || sharedPreferences.getBoolean(getString(R.string.model_mode_key), false)) {
+                || sharedPreferences.getBoolean(getString(R.string.key_model_mode), false)) {
             menu.removeItem(R.id.share_btn);
             menu.removeItem(R.id.del_btn);
             menu.removeItem(R.id.qr_btn);
@@ -214,11 +214,11 @@ public class EditContractFragment extends Fragment {
     private void showQRCodeDialog() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
-        String firstname = sharedPreferences.getString(getString(R.string.firstname_key), "");
-        String lastname = sharedPreferences.getString(getString(R.string.lastname_key), "");
-        String address = sharedPreferences.getString(getString(R.string.address_key), "");
-        String email = sharedPreferences.getString(getString(R.string.email_key), "");
-        String phone = sharedPreferences.getString(getString(R.string.phone_key), "");
+        String firstname = sharedPreferences.getString(getString(R.string.key_firstname), "");
+        String lastname = sharedPreferences.getString(getString(R.string.key_lastname), "");
+        String address = sharedPreferences.getString(getString(R.string.key_address), "");
+        String email = sharedPreferences.getString(getString(R.string.key_email), "");
+        String phone = sharedPreferences.getString(getString(R.string.key_phone), "");
         if (!firstname.isEmpty()
                 && !lastname.isEmpty()
                 && !address.isEmpty()
@@ -242,11 +242,11 @@ public class EditContractFragment extends Fragment {
                                             + "%s\n"
                                             + "%s\n"
                                             + "%s",
-                                    R.string.photographer, binding.getContract(), firstname, lastname, address, email, phone))
+                                    R.string.txt_photographer, binding.getContract(), firstname, lastname, address, email, phone))
                     .placeholder(circularProgressDrawable)
                     .into(qrImageView);
             AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-            builder.setPositiveButton(R.string.close, (dialog, id) -> {
+            builder.setPositiveButton(R.string.btn_close, (dialog, id) -> {
             });
             AlertDialog alert = builder.create();
             alert.setView(view);
@@ -264,12 +264,12 @@ public class EditContractFragment extends Fragment {
     private void showDeleteContractDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder
-                .setTitle(R.string.del_contract_title)
-                .setMessage(R.string.del_contract_prompt)
+                .setTitle(R.string.title_view_del_contract)
+                .setMessage(R.string.prompt_del_contract)
                 .setNegativeButton(android.R.string.cancel, (dialog, id) -> {
                 })
                 .setPositiveButton(
-                        R.string.delete,
+                        R.string.btn_delete,
                         (dialog, id) -> {
                             this.viewModel.deleteCurrentContract();
                             NavDirections action = EditContractFragmentDirections.gotoContractsFromEditAction();
@@ -287,12 +287,12 @@ public class EditContractFragment extends Fragment {
     private void showPhotographerDetailsErrorDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder
-                .setTitle(R.string.export_error_message)
-                .setMessage(R.string.photographer_details_error)
+                .setTitle(R.string.title_dialog_export_error)
+                .setMessage(R.string.error_photographer_details)
                 .setNegativeButton(android.R.string.cancel, (dialog, id) -> {
                 })
                 .setPositiveButton(
-                        R.string.go_to_settings_btn,
+                        R.string.btn_go_to_settings,
                         (dialog, id) -> {
                             NavDirections action = EditContractFragmentDirections.gotoSettingsFromEditAction();
                             this.navController.navigate(action);
@@ -312,11 +312,11 @@ public class EditContractFragment extends Fragment {
     private void handleShareButtonClick() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(requireContext());
-        String firstname = sharedPreferences.getString(getString(R.string.firstname_key), "");
-        String lastname = sharedPreferences.getString(getString(R.string.lastname_key), "");
-        String address = sharedPreferences.getString(getString(R.string.address_key), "");
-        String email = sharedPreferences.getString(getString(R.string.email_key), "");
-        String phone = sharedPreferences.getString(getString(R.string.phone_key), "");
+        String firstname = sharedPreferences.getString(getString(R.string.key_firstname), "");
+        String lastname = sharedPreferences.getString(getString(R.string.key_lastname), "");
+        String address = sharedPreferences.getString(getString(R.string.key_address), "");
+        String email = sharedPreferences.getString(getString(R.string.key_email), "");
+        String phone = sharedPreferences.getString(getString(R.string.key_phone), "");
         if (!firstname.isEmpty()
                 && !lastname.isEmpty()
                 && !address.isEmpty()
@@ -330,14 +330,14 @@ public class EditContractFragment extends Fragment {
                         Intent.EXTRA_TEXT,
                         String.format(
                                 "%s\n\n- %s -\n\n%s %s\n%s\n%s\n%s",
-                                boundContract, R.string.photographer, firstname, lastname, address, email, phone));
+                                boundContract, R.string.txt_photographer, firstname, lastname, address, email, phone));
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
             } else {
                 Toast.makeText(
                                 requireContext(),
-                                R.string.req_fields_error,
+                                R.string.error_req_fields,
                                 Toast.LENGTH_LONG)
                         .show();
             }
@@ -430,16 +430,16 @@ public class EditContractFragment extends Fragment {
         } else {
             SharedPreferences sharedPreferences =
                     PreferenceManager.getDefaultSharedPreferences(requireContext());
-            if (!sharedPreferences.getBoolean(getString(R.string.model_mode_key), false)) {
+            if (!sharedPreferences.getBoolean(getString(R.string.key_model_mode), false)) {
                 if (boundContract.hasMinFields()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                     builder
-                            .setTitle(R.string.submit_error_title)
-                            .setMessage(R.string.req_fields_error)
-                            .setNegativeButton(R.string.close, (dialog, id) -> {
+                            .setTitle(R.string.title_dialog_submit_error)
+                            .setMessage(R.string.error_req_fields)
+                            .setNegativeButton(R.string.btn_close, (dialog, id) -> {
                             })
                             .setPositiveButton(
-                                    R.string.submit_anyway,
+                                    R.string.btn_submit_anyway,
                                     (dialog, id) -> {
                                         viewModel.insert(boundContract);
                                         NavDirections action =
@@ -451,14 +451,14 @@ public class EditContractFragment extends Fragment {
                 } else {
                     Toast.makeText(
                                     requireContext(),
-                                    R.string.toast_min_fields_error,
+                                    R.string.error_min_fields,
                                     Toast.LENGTH_LONG)
                             .show();
                 }
             } else {
                 Toast.makeText(
                                 requireContext(),
-                                R.string.req_fields_error,
+                                R.string.error_req_fields,
                                 Toast.LENGTH_LONG)
                         .show();
             }

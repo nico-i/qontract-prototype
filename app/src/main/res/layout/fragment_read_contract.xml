@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/m_dim"
         android:background="@drawable/bg_white_border_gray_rounded"
-        android:label="@string/add_contract_title"
+        android:label="@string/title_view_add_contract"
 
         android:overScrollMode="never"
         android:padding="@dimen/s_dim"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/s_dim"
-            android:text="@string/model_release_txt" />
+            android:text="@string/txt_model_release" />
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -43,7 +43,7 @@
         android:letterSpacing="0.0"
         android:paddingTop="@dimen/m_dim"
         android:paddingBottom="@dimen/s_dim"
-        android:text="@string/back_to_contract"
+        android:text="@string/btn_back_to_contract"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/large_text"

@@ -10,7 +10,7 @@
         android:id="@+id/qr_code_image_view"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:contentDescription="@string/qr_image_desc"
+        android:contentDescription="@string/alt_qr_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

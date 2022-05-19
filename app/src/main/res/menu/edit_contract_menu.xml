@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/qr_btn"
-        android:contentDescription="@string/qr_btn_desc"
+        android:contentDescription="@string/btn_qr"
         android:icon="@drawable/ic_qrcode"
-        android:title="@string/qr_btn"
+        android:title="@string/txt_qr_code"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/share_btn"
-        android:contentDescription="@string/share"
+        android:contentDescription="@string/btn_share"
         android:icon="@drawable/ic_share_black"
-        android:title="@string/share"
+        android:title="@string/btn_share"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/del_btn"
-        android:contentDescription="@string/delete"
+        android:contentDescription="@string/btn_delete"
         android:icon="@drawable/ic_delete_black"
-        android:title="@string/delete"
+        android:title="@string/btn_delete"
         app:showAsAction="ifRoom" />
 </menu>

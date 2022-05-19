@@ -58,4 +58,16 @@
     <string name="email_key">p_email</string>
     <string name="phone_key">p_phone</string>
     <string name="model_mode_key">model_mode</string>
+    <string name="toast_min_fields_error">Fill out the minimum required fields to continue!</string>
+    <string name="submit_anyway">Submit anyway</string>
+    <string name="req_fields_error">Required fields are missing!</string>
+    <string name="close">Close</string>
+    <string name="submit_error_title">Submission Error</string>
+    <string name="prompt_read_before_signing">Please read the contract before signing!</string>
+    <string name="photographer">Photographer</string>
+    <string name="go_to_settings_btn">Go to settings</string>
+    <string name="photographer_details_error">Photographer details are not set!</string>
+    <string name="export_error_message">Export Error</string>
+    <string name="del_contract_prompt">Permanently delete this contract?</string>
+    <string name="del_contract_title">Delete contract</string>
 </resources>
